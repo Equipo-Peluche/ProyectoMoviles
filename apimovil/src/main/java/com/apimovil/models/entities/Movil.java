@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.
 import com.apimovil.models.Dimension;
 
 import jakarta.persistence.Entity;
+
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,6 +21,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Movil {
+
 
 	public Movil(int almacenamiento, double ram, double peso, double camara, int bateria, boolean nfc, double precio,
 			LocalDate fechaLanzamiento, Dimension dimensiones) {

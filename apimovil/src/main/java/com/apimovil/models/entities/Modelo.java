@@ -1,14 +1,14 @@
 package com.apimovil.models.entities;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,19 +17,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-
-public class Marca {
+public class Modelo {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long id;
-	private String nombreMarca;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private long id;
+	private String nombre;
+	@ManyToOne
+	@JoinColumn(name = "marca_id")
+	private Marca marca;
 	
-	@OneToMany(mappedBy = "marca")
-	public List<Modelo> modelos;
-	
-	
-	public Marca(String nombreMarca) {
-		this.nombreMarca=nombreMarca;
+	public Modelo(String nombre,Marca marca) {
+		this.nombre=nombre;
+		this.marca = marca;
 	}
-
 }
