@@ -2,17 +2,17 @@
 
 **Participantes:**
 
-- [**David**](https://github.com/davidbelesp) {:target="_blank"}
+- [**David**](https://github.com/davidbelesp) 
 
-- [**Félix**](https://github.com/felixieshna) {:target="_blank"}
+- [**Félix**](https://github.com/felixieshna) 
 
-- [**Jesús María**](https://github.com/jesusmariaieshna) {:target="_blank"}
+- [**Jesús María**](https://github.com/jesusmariaieshna) 
 
-- [**Jesús María**](https://github.com/joseantoniorbieshna) {:target="_blank"}
+- [**Jesús María**](https://github.com/joseantoniorbieshna) 
 
-- [**Manuel**](https://github.com/ManuCB1) {:target="_blank"}
+- [**Manuel**](https://github.com/ManuCB1) 
 
-- [**Alba**](https://github.com/Albamunru) {:target="_blank"}
+- [**Alba**](https://github.com/Albamunru) 
 
 
 
