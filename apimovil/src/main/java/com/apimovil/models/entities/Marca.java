@@ -15,12 +15,10 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
-
 public class Marca {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private Long id;
 	private String nombreMarca;
 	
