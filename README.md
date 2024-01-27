@@ -8,7 +8,7 @@
 
 - [**Jesús María**](https://github.com/jesusmariaieshna) 
 
-- [**Jesús María**](https://github.com/joseantoniorbieshna) 
+- [**Jose Antonio**](https://github.com/joseantoniorbieshna) 
 
 - [**Manuel**](https://github.com/ManuCB1) 
 
