@@ -30,6 +30,7 @@ class MarcaRepositoryTest {
 		Marca motorola= new Marca("Motorola");
 		Marca samsumng= new Marca("Samsung");
 		Marca htc= new Marca("HTC");
+		Marca xiaomiBorrada= new Marca("xiaomiseraborrada");
 		
 		marcaRepository.save(iphone);
 		marcaRepository.save(oppo);
@@ -37,6 +38,7 @@ class MarcaRepositoryTest {
 		marcaRepository.save(motorola);
 		marcaRepository.save(samsumng);
 		marcaRepository.save(htc);
+		marcaRepository.save(xiaomiBorrada);
 		
 		
 		//Buscar movil por nombre existente
@@ -52,6 +54,15 @@ class MarcaRepositoryTest {
 		Marca marcaNoExistente=marcaRepository.findByNombreMarca("chinito");
 		
 		assertNull(marcaNoExistente);
+		
+		//Comprobar que existe la marca y una vez borrada compruebo que no existe
+		Marca marcaborrar=marcaRepository.findByNombreMarca("xiaomiseraborrada");
+		assertEquals("xiaomiseraborrada", marcaborrar.getNombreMarca());
+		
+		marcaRepository.delete(marcaborrar);
+		marcaborrar=marcaRepository.findByNombreMarca("xiaomiseraborrada");
+		assertNull(marcaborrar);
+		
 		
 		
 	}
