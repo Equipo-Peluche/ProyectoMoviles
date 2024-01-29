@@ -10,11 +10,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.apimovil.models.dto.MovilRequestDTO;
+import com.apimovil.models.dto.MovilFilterRequestDTO;
 import com.apimovil.models.entities.Movil;
 import com.apimovil.models.filters.FilterRam;
 import com.apimovil.models.filters.IFilter;
+import com.apimovil.models.filters.PrecioFilter;
 import com.apimovil.repositories.MovilRepository;
+import com.apimovil.utiles.DoubleIntervalo;
 
 @SpringBootTest
 class FilterTest {
@@ -31,6 +33,7 @@ class FilterTest {
 		filters = new ArrayList<>();
 		
 		filters.add(new FilterRam());
+		filters.add(new PrecioFilter());
 		
 		mRepository.save(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
 		mRepository.save(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
@@ -38,14 +41,24 @@ class FilterTest {
 		
 		moviles = mRepository.findAll();
 		
-		MovilRequestDTO movilRequestDTO = new MovilRequestDTO();
-		movilRequestDTO.setNombre("algo");
+		MovilFilterRequestDTO movilRequestDTO = new MovilFilterRequestDTO();
+		
+		movilRequestDTO.setIntervaloPrecio(new DoubleIntervalo(200.0,400.0));
 		movilRequestDTO.setRam(5);
 		for (IFilter filter: filters) {
 			moviles=filter.filter(moviles, movilRequestDTO);
 		}
+		Integer expected=1;
+		assertEquals(expected, moviles.size());
 		
-		moviles.forEach(m -> System.err.println(m));
+		
+		movilRequestDTO = new MovilFilterRequestDTO();
+		for (IFilter filter: filters) {
+			moviles=filter.filter(moviles, movilRequestDTO);
+		}
+		
+		assertEquals(expected, moviles.size());
+		
 		
 		
 	}

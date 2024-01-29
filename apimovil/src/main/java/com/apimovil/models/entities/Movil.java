@@ -15,6 +15,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -23,20 +24,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Movil {
 
-
-	public Movil(int almacenamiento, double ram, double peso, double camara, int bateria, boolean nfc, double precio,
-			LocalDate fechaLanzamiento, Dimension dimensiones) {
-		super();
-		this.almacenamiento = almacenamiento;
-		this.ram = ram;
-		this.peso = peso;
-		this.camara = camara;
-		this.bateria = bateria;
-		this.nfc = nfc;
-		this.precio = precio;
-		this.fechaLanzamiento = fechaLanzamiento;
-		this.dimensiones = dimensiones;
-	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -55,7 +42,40 @@ public class Movil {
 	private boolean nfc;
 	private double precio;
 	private LocalDate fechaLanzamiento;
+	private long visitas;
 	@OneToOne
 	private Dimension dimensiones;
+	
+	public Movil(int almacenamiento, double ram, double peso, double camara, int bateria, boolean nfc, double precio,
+			LocalDate fechaLanzamiento, Dimension dimensiones) {
+		super();
+		this.almacenamiento = almacenamiento;
+		this.ram = ram;
+		this.peso = peso;
+		this.camara = camara;
+		this.bateria = bateria;
+		this.nfc = nfc;
+		this.precio = precio;
+		this.fechaLanzamiento = fechaLanzamiento;
+		this.dimensiones = dimensiones;
+	}
+
+	public Movil(TecnologiaPantalla tecnologiaPantalla, int almacenamiento, double ram, double peso, double camara,
+			int bateria, boolean nfc, double precio, LocalDate fechaLanzamiento, Dimension dimensiones, long visitas) {
+		super();
+		this.tecnologiaPantalla = tecnologiaPantalla;
+		this.almacenamiento = almacenamiento;
+		this.ram = ram;
+		this.peso = peso;
+		this.camara = camara;
+		this.bateria = bateria;
+		this.nfc = nfc;
+		this.precio = precio;
+		this.fechaLanzamiento = fechaLanzamiento;
+		this.visitas = visitas;
+		this.dimensiones = dimensiones;
+	}
+	
+	
 	
 }
