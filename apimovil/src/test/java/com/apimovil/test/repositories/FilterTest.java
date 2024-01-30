@@ -36,8 +36,6 @@ class FilterTest {
 		filters.add(new PrecioFilter());
 		
 		mRepository.save(new Movil(null, null, null, null, 128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null, 0));
-		mRepository.save(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
-		mRepository.save(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
 		
 		moviles = mRepository.findAll();
 		

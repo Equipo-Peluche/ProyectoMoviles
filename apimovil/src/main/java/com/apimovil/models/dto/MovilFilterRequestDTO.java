@@ -23,11 +23,13 @@ public class MovilFilterRequestDTO {
 	private DoubleIntervalo intervaloPeso;
 
 	private Integer megapixeles;
-	
-	private String procesador;
+
 	private Integer almacenamiento;
-	
-	private	boolean nfc; 
+	private Long visitas;
+
+	private String procesador;
+
+	private boolean nfc;
 
 	public boolean isBetweenPrecio(Double precio) {
 		return intervaloPrecio.isBetween(precio);
