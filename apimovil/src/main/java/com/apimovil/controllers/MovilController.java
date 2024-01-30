@@ -36,9 +36,9 @@ public class MovilController {
 	@RequestMapping(value="/movil", method = RequestMethod.POST)
 	public ResponseEntity<String> introducirMovil() {
 		//TODO CAMBIAR E INTRODUCIR BIEN
-		movilService.createMovil(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
-		movilService.createMovil(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
-		movilService.createMovil(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
+		//movilService.createMovil(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
+		//movilService.createMovil(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
+		//movilService.createMovil(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
 		
 		return ResponseEntity.ok("Creado");
 	}

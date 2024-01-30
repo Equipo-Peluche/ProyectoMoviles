@@ -79,6 +79,9 @@ class MovilRepositoryTest {
 		Movil iphoneMovil = new Movil(oled, iphoneModelo, m2, tamanio2, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
 		movilRepository.save(samsungMovil);
 		movilRepository.save(iphoneMovil);
+		
+		assertEquals(2, movilRepository.findAll().size());
+		
 	}
 
 }

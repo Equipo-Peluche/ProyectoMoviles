@@ -38,7 +38,7 @@ class ApimovilApplicationTests {
 		
 		assertEquals(3, mRepository.findAll().size());
 		assertEquals(2, mRepository.findByBateriaGreaterThanEqual(4000).size());
-		assertEquals(1, mRepository.findByDimensiones_AltoGreaterThanEqual(55).size());
+		assertEquals(1, mRepository.findByAltoGreaterThanEqual(55).size());
 		
 		
 	}

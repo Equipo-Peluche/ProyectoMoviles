@@ -57,7 +57,7 @@ class ProcesadorRespositoryTest {
 		
 	    int expected = 2;
 	    List<Procesador> procesadoresResultado = new ArrayList();
-	    procesadoresResultado = procesadorRepository.findByDescripcion("Procesador de alta velocidad");
+	    procesadoresResultado = procesadorRepository.findByNombre("Procesador de alta velocidad");
 	    assertEquals(expected, procesadoresResultado.size());	
 	}
 }
