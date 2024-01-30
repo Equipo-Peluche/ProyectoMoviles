@@ -40,11 +40,14 @@ class MovilRepositoryTest {
 		dimensionRepository.save(new Dimension(32.4, 155.3, 111.3));
 		
 		//INICIANDO MARCAS
-		marcaRepository.save(new Marca("iPhone"));
-		marcaRepository.save(new Marca("Samsung"));
+		Marca iphone = new Marca("iPhone");
+		Marca samsung = new Marca("Samsung");
+		marcaRepository.save(iphone);
+		marcaRepository.save(samsung);
 		
 		//INICIANDO MODELOS
-		modeloRepository.save(new Modelo("", null));
+		modeloRepository.save(new Modelo("s6", samsung));
+		modeloRepository.save(new Modelo("8 plus", iphone));
 	}
 
 }

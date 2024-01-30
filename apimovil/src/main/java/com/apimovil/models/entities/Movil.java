@@ -58,7 +58,6 @@ public class Movil {
 		this.tecnologiaPantalla = tecnologiaPantalla;
 		this.modelo = modelo;
 		this.procesador = procesador;
-		this.
 		this.tamanioPantalla = tamanio;
 		this.almacenamiento = almacenamiento;
 		this.ram = ram;
