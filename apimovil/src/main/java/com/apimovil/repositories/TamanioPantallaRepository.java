@@ -17,4 +17,5 @@ public interface TamanioPantallaRepository extends JpaRepository<TamanioPantalla
 
 	// Filtrado de pantallas menor que un tamaño dado por parametro
 	public List<TamanioPantalla> findAllByPulgadasLessThan(Double Tamanio);
+	public TamanioPantalla findByPulgadas(Double pulgadas);
 }

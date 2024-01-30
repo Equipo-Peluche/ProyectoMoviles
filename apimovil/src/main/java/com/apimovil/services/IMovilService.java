@@ -9,7 +9,7 @@ public interface IMovilService {
 	public List<Movil> getMovilesMasVistos(int cantidad);
 	public List<Movil> getAllMoviles();
 	public List<Movil> getMovilesFilter(MovilFilterRequestDTO movilRequestDTO);
-	public boolean createMovil(Movil movil);
+	public Movil createMovil(Movil movil);
 	public boolean removeMovil(Movil movil);
 	public boolean updateMovil(Movil primerMovil, Movil segundoMovil);
 	

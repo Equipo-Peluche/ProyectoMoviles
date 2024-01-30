@@ -2,10 +2,8 @@ package com.apimovil.models.entities;
 
 import java.time.LocalDate;
 
-import org.hibernate.type.SqlTypes;
-import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
-
-import com.apimovil.models.Dimension;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 
@@ -13,9 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.Builder;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,13 +26,17 @@ public class Movil {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@ManyToOne
+	@NotNull
 	private Procesador procesador;
 	//private Pantalla pantalla;
 	@OneToOne
+	@NotNull
 	private Modelo modelo;
 	@OneToOne
+	@NotNull
 	private TamanioPantalla tamanioPantalla;
 	@ManyToOne
+	@NotNull
 	private TecnologiaPantalla tecnologiaPantalla;
 	private int almacenamiento;
 	private double ram;
@@ -44,6 +45,7 @@ public class Movil {
 	private int bateria;
 	private boolean nfc;
 	private double precio;
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate fechaLanzamiento;
 	private long visitas;
 	private double alto;
@@ -74,7 +76,11 @@ public class Movil {
 		this.grosor = grosor;
 	}
 	
-	public String getMarca() {
+	public String getNombreMarca() {
+		return this.modelo.getNombreMarca();
+	}
+	
+	public Marca getMarca() {
 		return this.modelo.getMarca();
 	}
 	
