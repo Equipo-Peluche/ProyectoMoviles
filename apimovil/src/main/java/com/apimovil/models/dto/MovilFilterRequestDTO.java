@@ -1,5 +1,7 @@
 package com.apimovil.models.dto;
 
+import java.time.LocalDate;
+
 import com.apimovil.utiles.DoubleIntervalo;
 import com.apimovil.utiles.IntegerIntervalo;
 
@@ -12,15 +14,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MovilFilterRequestDTO {
 	private String marca;
+	
 	private String modelo;
+	
 	private Integer tamanioPantalla;
+	
 	private String tecnologiaPantalla;
 
 	private Integer ram;
+	
+	private Double camara;
+	
+	private LocalDate fechaLanzamiento;
 
 	private DoubleIntervalo intervaloPrecio;
 
 	private DoubleIntervalo intervaloPeso;
+
+	private DoubleIntervalo intervaloTamanio;
 
 	private Integer megapixeles;
 
@@ -35,8 +46,12 @@ public class MovilFilterRequestDTO {
 		return intervaloPrecio.isBetween(precio);
 	}
 
-	public boolean isBetweenPeso(Double precio) {
-		return intervaloPeso.isBetween(precio);
+	public boolean isBetweenPeso(Double peso) {
+		return intervaloPeso.isBetween(peso);
+	}
+
+	public boolean isBetweenTamanioPantalla(Double tamanio) {
+		return intervaloTamanio.isBetween(tamanio);
 	}
 
 	public boolean isAnyFieldOfPrecioNull() {
