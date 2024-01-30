@@ -28,10 +28,13 @@ public class Movil {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
-	//private Procesador procesador;
+	@ManyToOne
+	private Procesador procesador;
 	//private Pantalla pantalla;
-	//private Modelo modelo;
-	//private TamanoPantalla tamanoPantalla;
+	@OneToOne
+	private Modelo modelo;
+	@OneToOne
+	private TamanioPantalla tamanioPantalla;
 	@ManyToOne
 	private TecnologiaPantalla tecnologiaPantalla;
 	private int almacenamiento;
@@ -46,24 +49,16 @@ public class Movil {
 	@OneToOne
 	private Dimension dimensiones;
 	
-	public Movil(int almacenamiento, double ram, double peso, double camara, int bateria, boolean nfc, double precio,
-			LocalDate fechaLanzamiento, Dimension dimensiones) {
-		super();
-		this.almacenamiento = almacenamiento;
-		this.ram = ram;
-		this.peso = peso;
-		this.camara = camara;
-		this.bateria = bateria;
-		this.nfc = nfc;
-		this.precio = precio;
-		this.fechaLanzamiento = fechaLanzamiento;
-		this.dimensiones = dimensiones;
-	}
-
-	public Movil(TecnologiaPantalla tecnologiaPantalla, int almacenamiento, double ram, double peso, double camara,
-			int bateria, boolean nfc, double precio, LocalDate fechaLanzamiento, Dimension dimensiones, long visitas) {
+	public Movil(TecnologiaPantalla tecnologiaPantalla, Modelo modelo,
+			Procesador procesador,  TamanioPantalla tamanio,
+			int almacenamiento, double ram, double peso, double camara,
+			int bateria, boolean nfc, double precio, LocalDate fechaLanzamiento,
+			Dimension dimensiones, long visitas) {
 		super();
 		this.tecnologiaPantalla = tecnologiaPantalla;
+		this.modelo = modelo;
+		this.procesador = procesador;
+		this.tamanioPantalla = tamanio;
 		this.almacenamiento = almacenamiento;
 		this.ram = ram;
 		this.peso = peso;
@@ -76,6 +71,8 @@ public class Movil {
 		this.dimensiones = dimensiones;
 	}
 	
-	
+	public String getMarca() {
+		return this.modelo.getMarca();
+	}
 	
 }

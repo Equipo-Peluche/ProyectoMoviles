@@ -18,9 +18,14 @@ import com.apimovil.services.MovilService;
 @RequestMapping("moviles")
 public class MovilController {
 	
-	@Autowired
-	MovilService movilService;
+	private final MovilService movilService;
 	
+	
+	public MovilController(MovilService movilService) {
+		super();
+		this.movilService = movilService;
+	}
+
 	@RequestMapping("/filter")
 	public ResponseEntity<List<Movil>> filter(@RequestBody MovilFilterRequestDTO movilRequestDTO) {
 		List<Movil> moviles = movilService.getMovilesFilter(movilRequestDTO);
