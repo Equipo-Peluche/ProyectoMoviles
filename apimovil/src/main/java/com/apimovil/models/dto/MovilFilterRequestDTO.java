@@ -39,6 +39,8 @@ public class MovilFilterRequestDTO {
 	private Long visitas;
 
 	private String procesador;
+	
+	private Integer bateria;
 
 	private Boolean nfc;
 
@@ -73,5 +75,6 @@ public class MovilFilterRequestDTO {
 		this.megapixeles = megapixeles;
 		this.procesador = procesador;
 	}
+
 
 }
