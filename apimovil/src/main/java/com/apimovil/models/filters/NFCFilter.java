@@ -10,11 +10,11 @@ public class NFCFilter implements IFilter {
 
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-	       if (request.isNfc() == false) {
+	       if (request.getNfc() == null) {
 	            return lista;
 	        }
 
-	        boolean targetNfc = request.isNfc();
+	        boolean targetNfc = request.getNfc();
 	        return lista.stream()
 	                .filter(t -> (t.isNfc() == targetNfc))
 	                .collect(Collectors.toList());
