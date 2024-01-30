@@ -6,15 +6,15 @@ import java.util.stream.Collectors;
 import com.apimovil.models.dto.MovilFilterRequestDTO;
 import com.apimovil.models.entities.Movil;
 
-public class FilterMarca implements IFilter {
+public class FilterCamara implements IFilter {
 
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-		if (request.getMarca() == null) {
+		if (request.getCamara() == null) {
 			return lista;
 		}
-		return lista.stream().filter((m) -> m.getMarca().equalsIgnoreCase(request.getMarca()))
-				.collect(Collectors.toList());
+		return lista.stream().filter((l) -> l.getCamara() >= request.getCamara()).collect(Collectors.toList());
+
 	}
 
 }

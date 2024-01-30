@@ -6,14 +6,15 @@ import java.util.stream.Collectors;
 import com.apimovil.models.dto.MovilFilterRequestDTO;
 import com.apimovil.models.entities.Movil;
 
-public class FilterMarca implements IFilter {
+public class FilterScreenSize implements IFilter {
 
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-		if (request.getMarca() == null) {
+		if (request.getTamanioPantalla() == null) {
 			return lista;
 		}
-		return lista.stream().filter((m) -> m.getMarca().equalsIgnoreCase(request.getMarca()))
+		return lista.stream()
+				.filter(movil -> request.isBetweenTamanioPantalla(movil.getTamanioPantalla().getPulgadas()))
 				.collect(Collectors.toList());
 	}
 
