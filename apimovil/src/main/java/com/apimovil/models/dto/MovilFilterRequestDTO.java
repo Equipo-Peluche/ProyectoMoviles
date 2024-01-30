@@ -23,6 +23,8 @@ public class MovilFilterRequestDTO {
 	private DoubleIntervalo intervaloPeso;
 
 	private Integer megapixeles;
+	
+	private String procesador;
 
 	public boolean isBetweenPrecio(Double precio) {
 		return intervaloPrecio.isBetween(precio);
@@ -41,7 +43,7 @@ public class MovilFilterRequestDTO {
 	}
 
 	public MovilFilterRequestDTO(String marca, String modelo, Integer tamanioPantalla, String tecnologiaPantalla,
-			Integer ram, Integer megapixeles) {
+			Integer ram, Integer megapixeles, String procesador) {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;
@@ -49,6 +51,7 @@ public class MovilFilterRequestDTO {
 		this.tecnologiaPantalla = tecnologiaPantalla;
 		this.ram = ram;
 		this.megapixeles = megapixeles;
+		this.procesador = procesador;
 	}
 
 }
