@@ -77,5 +77,11 @@ public class Movil {
 	public String getMarca() {
 		return this.modelo.getMarca();
 	}
+
+	public Object getNombreProcesador() {
+		return procesador.getNombre();
+	}
+	
+	
 	
 }

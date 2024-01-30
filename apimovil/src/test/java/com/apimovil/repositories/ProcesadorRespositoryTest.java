@@ -1,4 +1,4 @@
-package com.apimovil.test.repositories;
+package com.apimovil.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

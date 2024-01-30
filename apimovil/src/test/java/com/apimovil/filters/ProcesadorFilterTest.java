@@ -1,4 +1,4 @@
-package com.apimovil.test.repositories;
+package com.apimovil.filters;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,21 +23,16 @@ class ProcesadorFilterTest {
 
 	@Autowired
 	MovilRepository mRepository;
-	
-	private List<IFilter> filters;
-	private List<Movil> moviles;
-	
-	
+		
 	 public void testProcesadorFilter() {
 	        // Crear algunos móviles para la prueba
-	        TecnologiaPantalla tecnologiaPantalla = new TecnologiaPantalla();
 	        Procesador procesadorA = new Procesador(2.0, "Ryzen 5");
 	        Procesador procesadorB = new Procesador(3.0, "Intel core i5");
-	        TamanioPantalla tamanioPantalla = new TamanioPantalla();
 
-	        Movil movil_1 = new Movil(tecnologiaPantalla, null, procesadorA, tamanioPantalla, 128, 4, 150, 12, 4000, true, 500, LocalDate.now(), null, 100);
-	        Movil movil_2 = new Movil(tecnologiaPantalla, null, procesadorB, tamanioPantalla, 256, 8, 180, 16, 5000, false, 700, LocalDate.now(), null, 150);
-	        Movil movil_3 = new Movil(tecnologiaPantalla, null, procesadorA, tamanioPantalla, 64, 6, 160, 14, 4500, true, 600, LocalDate.now(), null, 120);
+	        // Crear tres móviles con diferentes procesadores y guardarlos en la base de datos
+	        Movil movil_1 = new Movil(null, null, procesadorB, null, 128, 8, 231.4, 32.0, 4500, false, 359.99, LocalDate.now(), 122.3, 78.5 , 12.1, 0);
+			Movil movil_2 = new Movil(null, null, procesadorA, null, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
+			Movil movil_3 = new Movil(null, null, procesadorA, null, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
 
 	        // Guardar los móviles en la base de datos
 	        mRepository.saveAll(List.of(movil_1, movil_2, movil_3));

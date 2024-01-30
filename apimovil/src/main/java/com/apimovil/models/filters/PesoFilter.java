@@ -10,7 +10,7 @@ public class PesoFilter implements IFilter{
 
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-		if(request.isAnyFieldOfPesoNull()) {
+		if(request.getIntervaloPeso() == null||request.isAnyFieldOfPesoNull()) {
 			return lista;
 		}
 		return lista.stream()

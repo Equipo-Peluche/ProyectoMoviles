@@ -9,8 +9,10 @@ import com.apimovil.models.entities.Movil;
 public class PrecioFilter implements IFilter{
 
 	@Override
+	
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-		if(request.isAnyFieldOfPrecioNull()) {
+		if(request.getIntervaloPrecio() == null ||request.isAnyFieldOfPrecioNull()) {
+			
 			return lista;
 		}
 		return lista.stream().filter(t -> request.isBetweenPrecio(t.getPrecio())).collect(Collectors.toList());
