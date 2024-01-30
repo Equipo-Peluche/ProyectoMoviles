@@ -30,4 +30,8 @@ public class Modelo {
 		this.nombre=nombre;
 		this.marca = marca;
 	}
+	
+	public String getMarca() {
+		return this.marca.getNombreMarca();
+	}
 }
