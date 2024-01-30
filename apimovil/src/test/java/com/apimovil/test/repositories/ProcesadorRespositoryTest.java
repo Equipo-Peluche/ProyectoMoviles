@@ -27,10 +27,10 @@ class ProcesadorRespositoryTest {
  
 	@Test
 	void testGigahercios() {
-		Procesador procesador1 = new Procesador(3.8, "Procesador de alta velocidad", null);
-		Procesador procesador2 = new Procesador(3.8, "Procesador de baja velocidad", null);
-		Procesador procesador3= new Procesador(4.5, "Procesador de media velocidad", null);
-		Procesador procesador4 = new Procesador(5.0, "Procesador de alta velocidad", null);
+		Procesador procesador1 = new Procesador(3.8, "Procesador de alta velocidad");
+		Procesador procesador2 = new Procesador(3.8, "Procesador de baja velocidad");
+		Procesador procesador3= new Procesador(4.5, "Procesador de media velocidad");
+		Procesador procesador4 = new Procesador(5.0, "Procesador de alta velocidad");
 
 		procesadorRepository.save(procesador1);	
 		procesadorRepository.save(procesador2);	
@@ -45,10 +45,10 @@ class ProcesadorRespositoryTest {
 	
 	@Test
 	void testDescripcion() {
-		Procesador procesador1 = new Procesador(3.8, "Procesador de alta velocidad", null);
-		Procesador procesador2 = new Procesador(3.8, "Procesador de baja velocidad", null);
-		Procesador procesador3= new Procesador(4.5, "Procesador de media velocidad", null);
-		Procesador procesador4 = new Procesador(5.0, "Procesador de alta velocidad", null);
+		Procesador procesador1 = new Procesador(3.8, "Procesador de alta velocidad");
+		Procesador procesador2 = new Procesador(3.8, "Procesador de baja velocidad");
+		Procesador procesador3= new Procesador(4.5, "Procesador de media velocidad");
+		Procesador procesador4 = new Procesador(5.0, "Procesador de alta velocidad");
 
 		procesadorRepository.save(procesador1);	
 		procesadorRepository.save(procesador2);	
