@@ -25,7 +25,7 @@ class ProcesadorFilterTest {
 	MovilRepository mRepository;
 		
 	 public void testProcesadorFilter() {
-	        // Crear algunos móviles para la prueba
+	        // Crear algunos procesadores para la prueba
 	        Procesador procesadorA = new Procesador(2.0, "Ryzen 5");
 	        Procesador procesadorB = new Procesador(3.0, "Intel core i5");
 

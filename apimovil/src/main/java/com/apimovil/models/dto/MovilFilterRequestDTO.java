@@ -29,7 +29,7 @@ public class MovilFilterRequestDTO {
 
 	private String procesador;
 
-	private boolean nfc;
+	private Boolean nfc;
 
 	public boolean isBetweenPrecio(Double precio) {
 		return intervaloPrecio.isBetween(precio);
