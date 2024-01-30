@@ -6,18 +6,16 @@ import java.util.stream.Collectors;
 import com.apimovil.models.dto.MovilFilterRequestDTO;
 import com.apimovil.models.entities.Movil;
 
-public class ProcesadorFilter implements IFilter {
+public class PesoFilter implements IFilter{
 
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-		if(request.getProcesador()==null) {
+		if(request.isAnyFieldOfPesoNull()) {
 			return lista;
 		}
-		String targetProcesador = request.getProcesador();
 		return lista.stream()
-		        .filter(t -> targetProcesador.equals(t.getNombreProcesador()))
-		        .collect(Collectors.toList());
-
+				.filter(t -> request.isBetweenPeso(t.getPeso()))
+				.collect(Collectors.toList());
 	}
 
 }
