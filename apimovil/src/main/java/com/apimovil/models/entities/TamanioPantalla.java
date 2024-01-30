@@ -3,6 +3,8 @@ package com.apimovil.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,6 +26,7 @@ public class TamanioPantalla {
 	@NotNull
 	private Double pulgadas;
 	@OneToMany
+	@JsonIgnore
 	private List<Movil> listaMoviles;
 
 	public TamanioPantalla(Double pulgadas) {

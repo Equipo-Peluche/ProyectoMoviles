@@ -3,6 +3,7 @@ package com.apimovil.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,6 +29,7 @@ public class Procesador {
 	private double gigahercios;
 	private String nombre;
 	@OneToMany(fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Movil> movil;
 	
 	public Procesador(double gigahercios, String nombre) {

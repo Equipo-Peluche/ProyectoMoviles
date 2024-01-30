@@ -3,6 +3,8 @@ package com.apimovil.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -27,6 +29,7 @@ public class TecnologiaPantalla {
 	private String nombre;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tecnologiaPantalla")
+	@JsonIgnore
 	private List<Movil> moviles = new ArrayList<>();
 	
 	public TecnologiaPantalla(String nombre) {
