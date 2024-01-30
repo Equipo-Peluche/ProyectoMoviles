@@ -14,9 +14,9 @@ public interface MovilRepository extends JpaRepository<Movil, Long>{
 	public List<Movil> findByBateriaGreaterThanEqual(int bateria);
 	public List<Movil> findByNfc(boolean hasnfc);
 	public List<Movil> findByCamaraGreaterThanEqual(double mp);
-	public List<Movil> findByDimensiones_AltoGreaterThanEqual(final double alto);
-	public List<Movil> findByDimensiones_AnchoGreaterThanEqual(final double ancho);
-	public List<Movil> findByDimensiones_GrosorGreaterThanEqual(final double grosor);
+	public List<Movil> findByAltoGreaterThanEqual(final double alto);
+	public List<Movil> findByAnchoGreaterThanEqual(final double ancho);
+	public List<Movil> findByGrosorGreaterThanEqual(final double grosor);
 	public List<Movil> findByFechaLanzamientoAfter(LocalDate fecha);
 	public List<Movil> findByFechaLanzamientoBefore(LocalDate fecha);
 	public List<Movil> findByPesoGreaterThanEqual(double peso);

@@ -18,9 +18,14 @@ import com.apimovil.services.MovilService;
 @RequestMapping("moviles")
 public class MovilController {
 	
-	@Autowired
-	MovilService movilService;
+	private final MovilService movilService;
 	
+	
+	public MovilController(MovilService movilService) {
+		super();
+		this.movilService = movilService;
+	}
+
 	@RequestMapping("/filter")
 	public ResponseEntity<List<Movil>> filter(@RequestBody MovilFilterRequestDTO movilRequestDTO) {
 		List<Movil> moviles = movilService.getMovilesFilter(movilRequestDTO);
@@ -36,9 +41,9 @@ public class MovilController {
 	@RequestMapping(value="/movil", method = RequestMethod.POST)
 	public ResponseEntity<String> introducirMovil() {
 		//TODO CAMBIAR E INTRODUCIR BIEN
-		movilService.createMovil(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
-		movilService.createMovil(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
-		movilService.createMovil(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
+		//movilService.createMovil(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
+		//movilService.createMovil(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
+		//movilService.createMovil(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
 		
 		return ResponseEntity.ok("Creado");
 	}

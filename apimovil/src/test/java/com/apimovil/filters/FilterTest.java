@@ -1,4 +1,4 @@
-package com.apimovil.test.repositories;
+package com.apimovil.filters;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,10 +35,8 @@ class FilterTest {
 		filters.add(new FilterRam());
 		filters.add(new PrecioFilter());
 		
-		mRepository.save(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
-		mRepository.save(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
-		mRepository.save(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
-		
+		mRepository.save(new Movil(null, null, null, null, 128, 8, 231.4, 32.0, 4500, false, 359.99, LocalDate.now(), 122.3, 78.5 , 12.1, 0));
+
 		moviles = mRepository.findAll();
 		
 		MovilFilterRequestDTO movilRequestDTO = new MovilFilterRequestDTO();

@@ -9,5 +9,5 @@ import com.apimovil.models.entities.Procesador;
 public interface ProcesadorRepository extends JpaRepository<Procesador, Long> {
 	
 	public List<Procesador> findByGigahercios(double gigaHercios);
-	public List<Procesador> findByDescripcion(String descripcion);
+	public List<Procesador> findByNombre(String descripcion);
 }

@@ -46,14 +46,15 @@ public class Movil {
 	private double precio;
 	private LocalDate fechaLanzamiento;
 	private long visitas;
-	@OneToOne
-	private Dimension dimensiones;
+	private double alto;
+	private double ancho;
+	private double grosor;
 	
 	public Movil(TecnologiaPantalla tecnologiaPantalla, Modelo modelo,
 			Procesador procesador,  TamanioPantalla tamanio,
 			int almacenamiento, double ram, double peso, double camara,
 			int bateria, boolean nfc, double precio, LocalDate fechaLanzamiento,
-			Dimension dimensiones, long visitas) {
+			double ancho, double alto, double grosor , long visitas) {
 		super();
 		this.tecnologiaPantalla = tecnologiaPantalla;
 		this.modelo = modelo;
@@ -68,11 +69,19 @@ public class Movil {
 		this.precio = precio;
 		this.fechaLanzamiento = fechaLanzamiento;
 		this.visitas = visitas;
-		this.dimensiones = dimensiones;
+		this.alto = alto;
+		this.ancho = ancho;
+		this.grosor = grosor;
 	}
 	
 	public String getMarca() {
 		return this.modelo.getMarca();
 	}
+
+	public Object getNombreProcesador() {
+		return procesador.getNombre();
+	}
+	
+	
 	
 }
