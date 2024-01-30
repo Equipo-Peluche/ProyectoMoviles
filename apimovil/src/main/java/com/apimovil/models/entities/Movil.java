@@ -2,20 +2,13 @@ package com.apimovil.models.entities;
 
 import java.time.LocalDate;
 
-import org.hibernate.type.SqlTypes;
-import org.springframework.boot.autoconfigure.web.WebProperties.Resources.Chain.Strategy;
-
-import com.apimovil.models.Dimension;
-
 import jakarta.persistence.Entity;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -76,6 +69,18 @@ public class Movil {
 	
 	public String getMarca() {
 		return this.modelo.getMarca();
+	}
+	
+	public double getTamanioPantalla() {
+		return this.tamanioPantalla.getPulgadas();
+	}
+	
+	public String getModelo() {
+		return this.modelo.getNombre();
+	}
+	
+	public String getProcesador() {
+		return this.procesador.getNombre();
 	}
 	
 }
