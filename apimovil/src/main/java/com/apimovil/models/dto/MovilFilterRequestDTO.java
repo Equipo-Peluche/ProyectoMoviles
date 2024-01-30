@@ -25,6 +25,7 @@ public class MovilFilterRequestDTO {
 	private Integer megapixeles;
 	
 	private String procesador;
+	private  Integer almacenamiento;
 
 	public boolean isBetweenPrecio(Double precio) {
 		return intervaloPrecio.isBetween(precio);
