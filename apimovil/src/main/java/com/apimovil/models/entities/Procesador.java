@@ -26,14 +26,14 @@ public class Procesador {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private double gigahercios;
-	private String descripcion;
+	private String nombre;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Movil> movil;
 	
-	public Procesador(double gigahercios, String descripcion, List<Movil> movil) {
+	public Procesador(double gigahercios, String nombre) {
 		super();
 		this.gigahercios = gigahercios;
-		this.descripcion = descripcion;
+		this.nombre = nombre;
 		this.movil = new ArrayList<>();
 	}
 
