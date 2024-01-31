@@ -83,6 +83,7 @@ public class MovilService implements IMovilService {
 		
 		//Buscar y guardar si existen
 		marca = createMarcaIfNotExist(marca);
+		modelo.setMarca(marca);
 		modelo = createModeloInMarcaIfNotExist(modelo, marca);
 		procesador = createProcesadorIfNotExist(procesador);
 		tamanioPantalla = createTamanioPantallaIfNotExist(tamanioPantalla);
@@ -124,7 +125,7 @@ public class MovilService implements IMovilService {
 	
 	private Modelo createModeloInMarcaIfNotExist(Modelo modeloInput,Marca marcaInput) {
 		Modelo modelo = marcaInput.getModelos().stream()
-				.filter(list->list.getNombre().equals(modeloInput.getNombre())).findFirst().orElse(null);
+				.filter(modeloIterator->modeloIterator.getNombre().equals(modeloInput.getNombre())).findFirst().orElse(null);
 		if(modelo==null) {
 			modelo = modeloRepository.save(modeloInput);
 		}

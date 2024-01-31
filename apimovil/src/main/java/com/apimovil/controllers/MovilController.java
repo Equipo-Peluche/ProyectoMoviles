@@ -19,7 +19,7 @@ public class MovilController {
 	MovilService movilService;
 	
 	@RequestMapping("/filter")
-	public ResponseEntity<List<Movil>> filter(@RequestBody MovilFilterRequestDTO movilRequestDTO) {
+	public ResponseEntity<List<Movil>> filter(@Validated @RequestBody MovilFilterRequestDTO movilRequestDTO) {
 		List<Movil> moviles = movilService.getMovilesFilter(movilRequestDTO);
 		return ResponseEntity.ok(moviles);
 	}

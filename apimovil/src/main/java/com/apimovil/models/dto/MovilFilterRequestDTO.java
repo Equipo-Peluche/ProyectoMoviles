@@ -3,6 +3,7 @@ package com.apimovil.models.dto;
 import com.apimovil.utiles.DoubleIntervalo;
 import com.apimovil.utiles.IntegerIntervalo;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MovilFilterRequestDTO {
+	@NotNull
 	private String marca;
 	private String modelo;
 	private Integer tamanioPantalla;

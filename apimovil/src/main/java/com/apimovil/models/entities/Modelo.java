@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 public class Modelo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
+	private Long id;
 	@NotNull
 	private String nombre;
 	@ManyToOne

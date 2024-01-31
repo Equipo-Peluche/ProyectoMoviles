@@ -52,7 +52,7 @@ class TecnologiaPantallaRepositoryTest {
 		
 //		FindByNombre
 		Long id3 = tecnologiaPantallaRepository.findById(3l).get().getId();
-		assertEquals(id3, tecnologiaPantallaRepository.findByNombre("OLED").getId());
+		assertEquals(id3, tecnologiaPantallaRepository.findByNombre("OLED"));
 		
 		
 		
