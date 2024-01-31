@@ -3,7 +3,6 @@ package com.apimovil.models.dto;
 import java.time.LocalDate;
 
 import com.apimovil.utiles.DoubleIntervalo;
-import com.apimovil.utiles.IntegerIntervalo;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,8 +15,6 @@ public class MovilFilterRequestDTO {
 	private String marca;
 	
 	private String modelo;
-	
-	private Integer tamanioPantalla;
 	
 	private String tecnologiaPantalla;
 
@@ -62,16 +59,22 @@ public class MovilFilterRequestDTO {
 		return intervaloPeso.isAnyFieldNull();
 	}
 
-	public MovilFilterRequestDTO(String marca, String modelo, Integer tamanioPantalla, String tecnologiaPantalla,
+	public MovilFilterRequestDTO(String marca, String modelo, String tecnologiaPantalla,
 			Integer ram, Integer megapixeles, String procesador) {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;
-		this.tamanioPantalla = tamanioPantalla;
 		this.tecnologiaPantalla = tecnologiaPantalla;
 		this.ram = ram;
 		this.megapixeles = megapixeles;
 		this.procesador = procesador;
 	}
+
+	public boolean isAnyFieldOfTamanioPantalla() {
+		return intervaloTamanio.isAnyFieldNull();
+	}
+	
+	
+	
 
 }

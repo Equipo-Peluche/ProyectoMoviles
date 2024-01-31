@@ -10,7 +10,7 @@ public class FilterScreenSize implements IFilter {
 
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
-		if (request.getTamanioPantalla() == null) {
+		if (request.getIntervaloTamanio() == null || request.isAnyFieldOfTamanioPantalla()) {
 			return lista;
 		}
 		return lista.stream()
