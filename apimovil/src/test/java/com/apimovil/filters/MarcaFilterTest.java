@@ -20,9 +20,6 @@ import com.apimovil.repositories.MovilRepository;
 @SpringBootTest
 class MarcaFilterTest {
 	
-	@Autowired
-	MovilRepository mRepository;
-	
 	
 
 	@Test

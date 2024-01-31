@@ -11,9 +11,10 @@ public class FilterAlmacenamiento implements IFilter {
 	@Override
 	public List<Movil> filter(List<Movil> lista, MovilFilterRequestDTO request) {
 		if(request.getAlmacenamiento()==null) {
+			return lista;
 			
 		}
-		return lista.stream().filter((a)->a.getAlmacenamiento()==request.getAlmacenamiento()).collect(Collectors.toList());
+		return lista.stream().filter((a)->a.getAlmacenamiento()>=request.getAlmacenamiento()).collect(Collectors.toList());
 	}
 
 }
