@@ -30,7 +30,7 @@ public class Marca {
 	private Long id;
 	private String nombreMarca;
 	
-	@OneToMany(mappedBy = "marca")
+	@OneToMany(mappedBy = "marca",fetch = FetchType.EAGER)
 	@JsonIgnore
 	public List<Modelo> modelos= new ArrayList<>();
 	
