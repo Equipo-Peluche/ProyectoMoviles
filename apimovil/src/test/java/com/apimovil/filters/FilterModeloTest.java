@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +25,7 @@ class FilterModeloTest {
 	MovilRepository movilRepository;
 	@Autowired
 	ModeloRepository modeloRepository;
-
+	
 	@Test
 	void test() {
 		Modelo modelo = new Modelo("Galaxy", null);
@@ -45,10 +47,18 @@ class FilterModeloTest {
 		request.setModelo("S20");
 
 		FilterModelo filterModelo = new FilterModelo();
-		List<Movil> movilesFiltrados = filterModelo.filter(movilRepository.findAll(), request);
-
+		System.err.println("hola");
+		List<Movil> moviles = movilRepository.findAll();
+		System.err.println("hola despues");
+		List<Movil> movilesFiltrados = filterModelo.filter(moviles, request);
 		assertEquals(1, movilesFiltrados.size());
-		assertEquals("S20", movilesFiltrados.get(0).getModelo().getNombre());
+		assertEquals("S20", movilesFiltrados.get(0).getNombreModelo());
+
+	}
+	@AfterEach
+	void afterEach() {
+		movilRepository.deleteAll();
+		modeloRepository.deleteAll();
 
 	}
 

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,12 @@ class FilterCamaraTest {
 		FilterCamara filterCamara = new FilterCamara();
 		List<Movil> movilesFiltrados = filterCamara.filter(movilRepository.findAll(), requestDTO);
 		assertEquals(2, movilesFiltrados.size());
+	}
+	
+	@AfterEach
+	void test2() {
+		movilRepository.deleteAll();
+
 	}
 
 }

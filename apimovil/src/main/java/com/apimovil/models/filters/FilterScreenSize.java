@@ -14,7 +14,7 @@ public class FilterScreenSize implements IFilter {
 			return lista;
 		}
 		return lista.stream()
-				.filter(movil -> request.isBetweenTamanioPantalla(movil.getTamanioPantalla().getPulgadas()))
+				.filter(movil -> request.isBetweenTamanioPantalla(movil.getTamanioPantalla()))
 				.collect(Collectors.toList());
 	}
 

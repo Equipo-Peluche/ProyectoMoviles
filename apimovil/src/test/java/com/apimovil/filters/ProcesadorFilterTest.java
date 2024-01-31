@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -54,7 +55,12 @@ class ProcesadorFilterTest {
 
 	        // Verificar que el resultado sea el esperado
 	        assertEquals(2, resultadoFiltro.size());
-	        assertEquals("Ryzen 5", resultadoFiltro.get(0).getProcesador().getNombre());
-	        assertEquals("Ryzen 5", resultadoFiltro.get(1).getProcesador().getNombre());
+	        assertEquals("Ryzen 5", resultadoFiltro.get(0).getNombreProcesador());
+	        assertEquals("Ryzen 5", resultadoFiltro.get(1).getNombreProcesador());
 	    }
+	@AfterEach
+	void afterEach() {
+		mRepository.deleteAll();
+		procesadorRepository.deleteAll();
+	}
 	}

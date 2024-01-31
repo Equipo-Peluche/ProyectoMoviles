@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,6 +48,11 @@ class FilterScreenSizeTest {
 		List<Movil> listaFiltrada = filterScreenSize.filter(movilRepository.findAll(), request);
 		
 		assertEquals(2, listaFiltrada.size());
+	}
+	@AfterEach
+	void afterEach() {
+		movilRepository.deleteAll();
+		pantallaRepository.deleteAll();
 	}
 
 }

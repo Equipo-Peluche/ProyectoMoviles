@@ -13,7 +13,7 @@ public class FilterModelo implements IFilter {
 		if (request.getModelo() == null) {
 			return lista;
 		}
-		return lista.stream().filter((m) -> m.getModelo().getNombre().equalsIgnoreCase(request.getModelo()))
+		return lista.stream().filter((m) -> m.getNombreModelo().equalsIgnoreCase(request.getModelo()))
 				.collect(Collectors.toList());
 	}
 

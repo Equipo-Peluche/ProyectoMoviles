@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,6 +46,11 @@ class PesoFilterTest {
         assertEquals(2, resultadoFiltro.size());
         assertEquals(180, resultadoFiltro.get(0).getPeso());
         assertEquals(160, resultadoFiltro.get(1).getPeso());   
+	}
+	
+	@AfterEach
+	void afterEach() {
+		mRepository.deleteAll();
 	}
 
 }

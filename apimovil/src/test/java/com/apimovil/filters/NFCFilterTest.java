@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -46,6 +47,11 @@ class NFCFilterTest {
         // Verificar que los resultados sean los esperados
         assertEquals(2, resultadoFiltroTrue.size());
         assertEquals(1, resultadoFiltroFalse.size());
+	}
+	
+	@AfterEach
+	void afterEach() {
+		mRepository.deleteAll();
 	}
 
 }
