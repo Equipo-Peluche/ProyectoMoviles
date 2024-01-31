@@ -51,8 +51,8 @@ class TecnologiaPantallaRepositoryTest {
 		assertEquals("LCD", byId1.get().getNombre());
 		
 //		FindByNombre
-		Long id3 = tecnologiaPantallaRepository.findById(3l).get().getId();
-		assertEquals(id3, tecnologiaPantallaRepository.findByNombre("OLED").getId());
+		TecnologiaPantalla tecnologiaPantalla = tecnologiaPantallaRepository.findById(3l).get();
+		assertEquals(tecnologiaPantalla, tecnologiaPantallaRepository.findByNombre("OLED"));
 		
 		
 		
