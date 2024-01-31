@@ -48,7 +48,7 @@ public class MovilController {
 		return ResponseEntity.ok(movilService.createMovil(movil));
 	}
 	@GetMapping("/movil")
-	public ResponseEntity<List<Movil>> getAllMoviles() {
+	public ResponseEntity<List<MovilDTO>> getAllMoviles() {
 		return ResponseEntity.ok(movilService.getAllMoviles());
 	}
 	

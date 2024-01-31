@@ -70,10 +70,6 @@ public class Movil {
 	public String getNombreMarca() {
 		return this.modelo.getMarca();
 	}
-
-	public String getNombreProcesador() {
-		return procesador.getNombre();
-	}
 	
 	public double getNombreTamanioPantalla() {
 		return this.tamanioPantalla.getPulgadas();
@@ -89,6 +85,9 @@ public class Movil {
 	
 	public String getNombreProcesador() {
 		return this.procesador.getNombre();
+	}
+	public Double getPulgadasPantalla() {
+		return tamanioPantalla.getPulgadas();
 	}
 	
 }

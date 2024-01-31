@@ -13,7 +13,7 @@ public class FilterMarca implements IFilter {
 		if (request.getMarca() == null) {
 			return lista;
 		}
-		return lista.stream().filter((m) -> m.getMarca().equalsIgnoreCase(request.getMarca()))
+		return lista.stream().filter((m) -> m.getNombreMarca().equalsIgnoreCase(request.getMarca()))
 				.collect(Collectors.toList());
 	}
 

@@ -64,7 +64,6 @@ public class MovilService implements IMovilService {
 
 	@Override
 	public Movil createMovil(Movil movil) {
-		
 		return movilRepository.save(movil);
 	}
 
