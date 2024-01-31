@@ -17,17 +17,24 @@ import com.apimovil.models.entities.TecnologiaPantalla;
 import com.apimovil.models.filters.IFilter;
 import com.apimovil.models.filters.ProcesadorFilter;
 import com.apimovil.repositories.MovilRepository;
+import com.apimovil.repositories.ProcesadorRepository;
 
 @SpringBootTest
 class ProcesadorFilterTest {
 
 	@Autowired
 	MovilRepository mRepository;
+	@Autowired
+	ProcesadorRepository procesadorRepository;
 		
+	@Test
 	 public void testProcesadorFilter() {
 	        // Crear algunos procesadores para la prueba
 	        Procesador procesadorA = new Procesador(2.0, "Ryzen 5");
 	        Procesador procesadorB = new Procesador(3.0, "Intel core i5");
+	        
+	        procesadorRepository.saveAll(List.of(procesadorA,procesadorB));
+	        
 
 	        // Crear tres móviles con diferentes procesadores y guardarlos en la base de datos
 	        Movil movil_1 = new Movil(null, null, procesadorB, null, 128, 8, 231.4, 32.0, 4500, false, 359.99, LocalDate.now(), 122.3, 78.5 , 12.1, 0);
@@ -47,7 +54,7 @@ class ProcesadorFilterTest {
 
 	        // Verificar que el resultado sea el esperado
 	        assertEquals(2, resultadoFiltro.size());
-	        assertEquals("ProcesadorA", resultadoFiltro.get(0).getProcesador().getNombre());
-	        assertEquals("ProcesadorA", resultadoFiltro.get(1).getProcesador().getNombre());
+	        assertEquals("Ryzen 5", resultadoFiltro.get(0).getProcesador().getNombre());
+	        assertEquals("Ryzen 5", resultadoFiltro.get(1).getProcesador().getNombre());
 	    }
 	}
