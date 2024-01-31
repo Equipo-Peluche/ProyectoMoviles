@@ -67,19 +67,23 @@ public class Movil {
 		this.grosor = grosor;
 	}
 	
-	public String getMarca() {
+	public String getNombreMarca() {
 		return this.modelo.getMarca();
 	}
 	
-	public double getTamanioPantalla() {
+	public double getNombreTamanioPantalla() {
 		return this.tamanioPantalla.getPulgadas();
 	}
 	
-	public String getModelo() {
+	public String getNombreTecnologiaPantalla() {
+		return this.tecnologiaPantalla.getNombre();
+	}
+	
+	public String getNombreModelo() {
 		return this.modelo.getNombre();
 	}
 	
-	public String getProcesador() {
+	public String getNombreProcesador() {
 		return this.procesador.getNombre();
 	}
 	

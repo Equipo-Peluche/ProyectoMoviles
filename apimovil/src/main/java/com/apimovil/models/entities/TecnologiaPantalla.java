@@ -2,6 +2,7 @@ package com.apimovil.models.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -31,14 +32,27 @@ public class TecnologiaPantalla {
 		super();
 		this.nombre = nombre;
 	}
-	
-	public void addMovil(Movil movil) {
-		moviles.add(movil);
-	}
 
 	@Override
 	public String toString() {
 		return "TecnologiaPantalla [id=" + id + ", nombre=" + nombre + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TecnologiaPantalla other = (TecnologiaPantalla) obj;
+		return Objects.equals(id, other.id) && Objects.equals(nombre, other.nombre);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id, nombre);
 	}
 	
 	
