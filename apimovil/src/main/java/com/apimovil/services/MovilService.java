@@ -11,6 +11,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.apimovil.models.dto.MovilFilterRequestDTO;
+import com.apimovil.models.dto.MovilRequestRemoveDTO;
 import com.apimovil.models.entities.Marca;
 import com.apimovil.models.entities.Modelo;
 import com.apimovil.models.entities.Movil;
@@ -42,6 +43,7 @@ public class MovilService implements IMovilService {
 	TamanioPantallaRepository tamanioPantallaRepository;
 	@Autowired
 	TecnologiaPantallaRepository tecnologiaPantallaRepository;
+	
 
 	@Override
 	public List<Movil> getMovilesMasVistos(int cantidad) {
@@ -101,14 +103,28 @@ public class MovilService implements IMovilService {
 
 
 	@Override
-	public boolean removeMovil(Movil movil) {
-		try {
-		movilRepository.delete(movil);
-		return true;
-		}catch(DataAccessException e){
-		e.printStackTrace();
-		return false;
-		}
+	public boolean removeMovil(MovilRequestRemoveDTO movilRequestRemoveDTO) {
+		String marca= movilRequestRemoveDTO.getMarca();
+		String modelo=movilRequestRemoveDTO.getModelo();
+		
+		List<Movil>listaMoviles=this.movilRepository.findAll();
+		int tamannoLista=listaMoviles.size();
+		listaMoviles.forEach((m)->{
+			if(m.getMarca().equals(marca)&&m.getModelo().equals(modelo)) {
+				this.movilRepository.delete(m);
+				
+				
+			}
+		});
+		
+		listaMoviles=this.movilRepository.findAll();
+		int tamannoNuevo=listaMoviles.size();
+		boolean respuesta=tamannoLista>tamannoNuevo;
+		
+		
+		
+		
+		return respuesta;
 	}
 
 	@Override

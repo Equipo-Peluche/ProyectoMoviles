@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.apimovil.models.dto.MovilFilterRequestDTO;
+import com.apimovil.models.dto.MovilRequestRemoveDTO;
 import com.apimovil.models.entities.Movil;
 import com.apimovil.services.MovilService;
 
@@ -41,6 +42,16 @@ public class MovilController {
 	@GetMapping("/movil")
 	public ResponseEntity<List<Movil>> getAllMoviles() {
 		return ResponseEntity.ok(movilService.getAllMoviles());
+	}
+	
+	@DeleteMapping("/movil")
+	public ResponseEntity<Boolean> eliminarMovil(@RequestBody Movil movil){
+		String marca=movil.getNombreMarca();
+		String modelo=movil.getModelo().getNombre();
+		MovilRequestRemoveDTO movilRequestRemoveDTO= new MovilRequestRemoveDTO(marca,modelo);
+		return ResponseEntity.ok(movilService.removeMovil(movilRequestRemoveDTO));
+		
+		
 	}
 	
 }
