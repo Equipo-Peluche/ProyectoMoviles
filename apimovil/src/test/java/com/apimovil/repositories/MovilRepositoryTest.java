@@ -80,10 +80,12 @@ class MovilRepositoryTest {
 		movilRepository.save(samsungMovil);
 		movilRepository.save(iphoneMovil);
 		
-		assertEquals(2, movilRepository.findAll().size());
-		assertEquals(1, movilRepository.findByBateriaGreaterThanEqual(5000));
-		assertEquals(1, movilRepository.findByCamaraGreaterThanEqual(40));
-		assertEquals(1, movilRepository.findByNfc(true));
+		int esperado = 2;
+		assertEquals(esperado, movilRepository.findAll().size());
+		esperado = 1;
+		assertEquals(esperado, movilRepository.findByBateriaGreaterThanEqual(5000).size());
+		assertEquals(esperado, movilRepository.findByCamaraGreaterThanEqual(40).size());
+		assertEquals(esperado, movilRepository.findByNfc(true).size());
 		
 	}
 
