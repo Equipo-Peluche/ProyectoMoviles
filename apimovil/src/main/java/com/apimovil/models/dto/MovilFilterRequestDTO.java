@@ -2,6 +2,8 @@ package com.apimovil.models.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.apimovil.utiles.DoubleIntervalo;
 
 import lombok.AllArgsConstructor;
@@ -12,6 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class MovilFilterRequestDTO {
+	@NotNull
 	private String marca;
 	
 	private String modelo;

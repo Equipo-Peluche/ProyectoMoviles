@@ -3,6 +3,8 @@ package com.apimovil.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -16,16 +18,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
-@Data						// '@Data' = getters and setters
-@NoArgsConstructor			// Constructor sin argumentos
-@AllArgsConstructor			// Constructor con argumentos
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
 public class Procesador {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
+	@Min(value = 1, message = "El valor no puede ser menor de 1")
 	private double gigahercios;
+    @NotNull(message = "El nombre del procesador no puede ser nulo")
 	private String nombre;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Movil> movil;
