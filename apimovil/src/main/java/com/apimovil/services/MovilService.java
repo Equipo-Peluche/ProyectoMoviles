@@ -1,7 +1,5 @@
 package com.apimovil.services;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.apimovil.models.dto.MovilDTO;
 import com.apimovil.models.dto.MovilFilterRequestDTO;
 import com.apimovil.models.dto.UpdateRequestDTO;
 import com.apimovil.models.dto.MovilRequestRemoveDTO;
 import com.apimovil.models.entities.Marca;
 import com.apimovil.models.entities.Modelo;
+import com.apimovil.models.dto.ResumenDTO;
 import com.apimovil.models.entities.Movil;
 import com.apimovil.models.entities.Procesador;
 import com.apimovil.models.entities.TamanioPantalla;
@@ -23,6 +23,8 @@ import com.apimovil.models.filters.FactoryFilter;
 import com.apimovil.models.filters.IFilter;
 import com.apimovil.repositories.MarcaRepository;
 import com.apimovil.repositories.ModeloRepository;
+import com.apimovil.models.mappers.MovilDTOMapper;
+import com.apimovil.models.mappers.ResumenDTOMapper;
 import com.apimovil.repositories.MovilRepository;
 import com.apimovil.repositories.ProcesadorRepository;
 import com.apimovil.repositories.TamanioPantallaRepository;
@@ -33,7 +35,6 @@ public class MovilService implements IMovilService {
 	
 	@Autowired
 	MovilRepository movilRepository;
-	
 	@Autowired
 	MarcaRepository marcaRepository;
 	@Autowired
@@ -46,10 +47,15 @@ public class MovilService implements IMovilService {
 	TecnologiaPantallaRepository tecnologiaPantallaRepository;
 	
 
+	@Autowired
+	ResumenDTOMapper resumenDTOMapper;
+	@Autowired
+	MovilDTOMapper movilDTOMapper;
+
 	@Override
-	public List<Movil> getMovilesMasVistos(int cantidad) {
+	public List<ResumenDTO> getMovilesMasVistos(int cantidad) {
 		
-		return getAllMoviles().stream().sorted((o1, o2) -> {
+		return movilRepository.findAll().stream().sorted((o1, o2) -> {
 			if(o1.getVisitas()<o2.getVisitas()) {
 				return -1;
 			}else if(o1.getVisitas()>o2.getVisitas()) {
@@ -57,24 +63,29 @@ public class MovilService implements IMovilService {
 			}
 			return 0;
 		}).limit(cantidad)
+		.map(movil-> resumenDTOMapper.map(movil))
 		.collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Movil> getAllMoviles() {
-		return movilRepository.findAll();
+	public List<MovilDTO> getAllMoviles() {
+		return movilRepository.findAll().stream()
+				.map(movil -> movilDTOMapper.map(movil))
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public List<Movil> getMovilesFilter(MovilFilterRequestDTO movilRequestDTO) {
-		List<Movil> moviles = getAllMoviles();
+	public List<MovilDTO> getMovilesFilter(MovilFilterRequestDTO movilRequestDTO) {
+		List<Movil> moviles = movilRepository.findAll();
 		List<IFilter> filters = FactoryFilter.ALL.getFilters();
 		
 		for(IFilter filter:filters) {
 			moviles = filter.filter(moviles, movilRequestDTO);
 		}
 		
-		return moviles;
+		return moviles.stream()
+				.map(movil-> movilDTOMapper.map(movil))
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -132,8 +143,6 @@ public class MovilService implements IMovilService {
 		}
 		return false;
 	}
-	
-	
 	
 	private Optional<Modelo> getModeloByNombreMarcaAndNombreModel(UpdateRequestDTO updateRequestDTO) {
 		return getModeloByNombreMarcaAndNombreModel(updateRequestDTO.getMarca(),updateRequestDTO.getModelo());

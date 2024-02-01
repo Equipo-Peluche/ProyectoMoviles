@@ -1,4 +1,4 @@
-package com.apimovil.test.repositories;
+package com.apimovil.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,7 +25,7 @@ class ProcesadorRespositoryTest {
  		procesadorRepository.deleteAll();
  	}
  
-	@Test
+	@Test      
 	void testGigahercios() {
 		Procesador procesador1 = new Procesador(3.8, "Procesador de alta velocidad");
 		Procesador procesador2 = new Procesador(3.8, "Procesador de baja velocidad");

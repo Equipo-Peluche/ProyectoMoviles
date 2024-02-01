@@ -7,9 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.apimovil.models.dto.MovilFilterRequestDTO;
 import com.apimovil.models.dto.UpdateRequestDTO;
 import com.apimovil.models.dto.MovilRequestRemoveDTO;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.apimovil.models.dto.MovilDTO;
+import com.apimovil.models.dto.MovilFilterRequestDTO;
+import com.apimovil.models.dto.ResumenDTO;
 import com.apimovil.models.entities.Movil;
 import com.apimovil.services.MovilService;
 
@@ -17,33 +24,36 @@ import com.apimovil.services.MovilService;
 @RequestMapping("moviles")
 public class MovilController {
 	
-	@Autowired
-	MovilService movilService;
+	private final MovilService movilService;
 	
+	public MovilController(MovilService movilService) {
+		super();
+		this.movilService = movilService;
+	}
+
 	@RequestMapping("/filter")
-	public ResponseEntity<List<Movil>> filter(@Validated @RequestBody MovilFilterRequestDTO movilRequestDTO) {
-		List<Movil> moviles = movilService.getMovilesFilter(movilRequestDTO);
+	public ResponseEntity<List<MovilDTO>> filter(@Validated @RequestBody MovilFilterRequestDTO movilRequestDTO) {
+		List<MovilDTO> moviles = movilService.getMovilesFilter(movilRequestDTO);
 		return ResponseEntity.ok(moviles);
 	}
 	
 	@RequestMapping("/top")
-	public ResponseEntity<List<Movil>> getTopFive() {
-		//TODO hacer el Mapper y DTO Resumen
-		List<Movil> moviles = movilService.getMovilesMasVistos(5);
+	public ResponseEntity<List<ResumenDTO>> getTopFive() {
+		List<ResumenDTO> moviles = movilService.getMovilesMasVistos(5);
 		return ResponseEntity.ok(moviles);
 	}
 	
 
 	@PostMapping("/movil")
 	public ResponseEntity<Movil> introducirMovil(@RequestBody Movil movil) {
-		System.out.println();
 		//TODO CAMBIAR E INTRODUCIR BIEN		
 		return ResponseEntity.ok(movilService.createMovil(movil));
 	}
 	@GetMapping("/movil")
-	public ResponseEntity<List<Movil>> getAllMoviles() {
+	public ResponseEntity<List<MovilDTO>> getAllMoviles() {
 		return ResponseEntity.ok(movilService.getAllMoviles());
 	}
+
 	@RequestMapping(value = "/movil",method = RequestMethod.PUT)
 	public ResponseEntity<Boolean> update(@RequestBody UpdateRequestDTO updateRequestDTO) {
 		return ResponseEntity.ok(movilService.updateMovil(updateRequestDTO));
@@ -53,7 +63,6 @@ public class MovilController {
 	public ResponseEntity<Boolean> eliminarMovil(@RequestBody MovilRequestRemoveDTO movilRequestRemoveDTO){
 		
 		return ResponseEntity.ok(movilService.removeMovil(movilRequestRemoveDTO));
-		
 		
 	}
 	

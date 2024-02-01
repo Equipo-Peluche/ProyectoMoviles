@@ -15,13 +15,6 @@ class MarcaRepositoryTest {
 	@Autowired
 	private MarcaRepository marcaRepository;
 	
-	
-
-
-	
-	
-	
-
 	@Test
 	void test() {
 		Marca iphone= new Marca("Iphone");

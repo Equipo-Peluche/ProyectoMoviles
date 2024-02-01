@@ -14,5 +14,6 @@ public abstract class Intervalo<T extends Number> {
 	public boolean isAnyFieldNull() {
 		return numeroMin==null || numeroMax==null;
 	}
+	
 
 }

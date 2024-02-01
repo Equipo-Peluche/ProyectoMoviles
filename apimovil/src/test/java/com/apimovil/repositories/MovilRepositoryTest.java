@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -83,6 +84,14 @@ class MovilRepositoryTest {
 //		movilRepository.save(samsungMovil2);
 		movilRepository.save(iphoneMovil);
 
+		
+		int esperado = 2;
+		assertEquals(esperado, movilRepository.findAll().size());
+		esperado = 1;
+		assertEquals(esperado, movilRepository.findByBateriaGreaterThanEqual(5000).size());
+		assertEquals(esperado, movilRepository.findByCamaraGreaterThanEqual(40).size());
+		assertEquals(esperado, movilRepository.findByNfc(true).size());
+
 		assertEquals(2, movilRepository.findAll().size());
 		assertEquals(2, modeloRepository.findAll().size());
 		assertEquals(2, marcaRepository.findAll().size());
@@ -92,8 +101,20 @@ class MovilRepositoryTest {
 		assertEquals(1, movilRepository.findAll().size());
 		assertEquals(1, modeloRepository.findAll().size());
 		assertEquals(2, marcaRepository.findAll().size());
-
+		
+		
 		
 	}
 
+	@AfterEach
+	void aftereach() {
+		tecnologiaPantallaRepository.deleteAll();
+		movilRepository.deleteAll();
+		dimensionRepository.deleteAll();
+		modeloRepository.deleteAll();
+		procesadorRepository.deleteAll();
+		marcaRepository.deleteAll();
+		tamanioPantallaRepository.deleteAll();
+	}
+	
 }

@@ -6,7 +6,6 @@ import lombok.Data;
 
 @Data
 public class UpdateRequestDTO {
-
 	private String marca;
 	private String modelo;
 	private Double precio;

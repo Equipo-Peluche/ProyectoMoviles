@@ -2,15 +2,16 @@ package com.apimovil.models.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +25,10 @@ public class TamanioPantalla {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	@NotNull
+	@Min(value = 1)
+	@Max(value = 15)
 	private Double pulgadas;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.REMOVE)
 	@JsonIgnore
 	private List<Movil> listaMoviles;
 
