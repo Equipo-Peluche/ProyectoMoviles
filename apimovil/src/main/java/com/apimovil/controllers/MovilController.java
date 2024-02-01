@@ -50,10 +50,8 @@ public class MovilController {
 	}
 	
 	@DeleteMapping("/movil")
-	public ResponseEntity<Boolean> eliminarMovil(@RequestBody Movil movil){
-		String marca=movil.getNombreMarca();
-		String modelo=movil.getModelo().getNombre();
-		MovilRequestRemoveDTO movilRequestRemoveDTO= new MovilRequestRemoveDTO(marca,modelo);
+	public ResponseEntity<Boolean> eliminarMovil(@RequestBody MovilRequestRemoveDTO movilRequestRemoveDTO){
+		
 		return ResponseEntity.ok(movilService.removeMovil(movilRequestRemoveDTO));
 		
 		

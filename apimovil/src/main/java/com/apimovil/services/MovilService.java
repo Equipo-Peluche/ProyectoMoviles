@@ -105,27 +105,19 @@ public class MovilService implements IMovilService {
 
 	@Override
 	public boolean removeMovil(MovilRequestRemoveDTO movilRequestRemoveDTO) {
-		String marca= movilRequestRemoveDTO.getMarca();
-		String modelo=movilRequestRemoveDTO.getModelo();
-		
-		List<Movil>listaMoviles=this.movilRepository.findAll();
-		int tamannoLista=listaMoviles.size();
-		listaMoviles.forEach((m)->{
-			if(m.getMarca().equals(marca)&&m.getModelo().equals(modelo)) {
-				this.movilRepository.delete(m);
-				
-				
-			}
-		});
-		
-		listaMoviles=this.movilRepository.findAll();
-		int tamannoNuevo=listaMoviles.size();
-		boolean respuesta=tamannoLista>tamannoNuevo;
+		Optional<Modelo> modelo = getModeloByNombreMarcaAndNombreModel(movilRequestRemoveDTO.getMarca(),movilRequestRemoveDTO.getModelo());
+		if(modelo.isPresent()) {
+			
+			Movil movil = movilRepository.findByModelo(modelo.get());
+			movilRepository.delete(movil);
+			
+			
+			
+			return true;
+		}
 		
 		
-		
-		
-		return respuesta;
+		return false;
 	}
 
 	@Override

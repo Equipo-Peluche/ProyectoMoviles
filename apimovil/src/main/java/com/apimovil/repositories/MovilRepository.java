@@ -27,6 +27,7 @@ public interface MovilRepository extends JpaRepository<Movil, Long>{
 	public List<Movil> findByRamGreaterThanEqual(int ram);
 	public List<Movil> findByRam(int ram);
 	public Movil findByModelo(Modelo modelo);
+	public void delete(Movil movil);
 	//TODO PROCESADOR Y PANTALLA FIND BY
 	
 }
