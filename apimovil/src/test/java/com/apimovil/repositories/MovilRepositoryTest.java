@@ -82,8 +82,17 @@ class MovilRepositoryTest {
 		Movil iphoneMovil = new Movil(lcd, iphoneModelo, snapdragon, tamanio2, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
 //		movilRepository.save(samsungMovil2);
 		movilRepository.save(iphoneMovil);
-		
+
 		assertEquals(2, movilRepository.findAll().size());
+		assertEquals(2, modeloRepository.findAll().size());
+		assertEquals(2, marcaRepository.findAll().size());
+		
+		
+		movilRepository.delete(samsungMovil);
+		assertEquals(1, movilRepository.findAll().size());
+		assertEquals(1, modeloRepository.findAll().size());
+		assertEquals(2, marcaRepository.findAll().size());
+
 		
 	}
 

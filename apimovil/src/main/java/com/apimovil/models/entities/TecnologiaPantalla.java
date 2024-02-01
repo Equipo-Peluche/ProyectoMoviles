@@ -28,7 +28,7 @@ public class TecnologiaPantalla {
 	@NotNull
 	private String nombre;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tecnologiaPantalla")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tecnologiaPantalla")
 	@JsonIgnore
 	private List<Movil> moviles = new ArrayList<>();
 	

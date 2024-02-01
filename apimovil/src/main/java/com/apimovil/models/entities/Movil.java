@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
@@ -31,7 +32,7 @@ public class Movil {
 	@NotNull
 	private Procesador procesador;
 	//private Pantalla pantalla;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@NotNull
 	private Modelo modelo;
 	@ManyToOne

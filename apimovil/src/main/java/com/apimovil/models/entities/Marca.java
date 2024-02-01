@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -30,8 +31,7 @@ public class Marca {
 	private Long id;
 	private String nombreMarca;
 	
-	@OneToMany(mappedBy = "marca",fetch = FetchType.EAGER)
-	@JsonIgnore
+	@OneToMany( cascade = CascadeType.REMOVE ,mappedBy = "marca",fetch = FetchType.EAGER)
 	public List<Modelo> modelos= new ArrayList<>();
 	
 	
