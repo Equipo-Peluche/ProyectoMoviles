@@ -43,7 +43,7 @@ class MarcaRepositoryTest {
 		
 		//Buscar movil por nombre existente
 		
-		Marca marcaBuscada=marcaRepository.findByNombreMarca("Iphone");
+		Marca marcaBuscada=marcaRepository.findByNombreMarcaIgnoreCase("Iphone");
 		assertEquals("Iphone", marcaBuscada.getNombreMarca());
 		
 		// Buscar movil por marca mal escrita
@@ -51,16 +51,16 @@ class MarcaRepositoryTest {
 		assertNotEquals("iphone", marcaBuscada.getNombreMarca());
 		
 		//Buscar móvil por marca no registrada
-		Marca marcaNoExistente=marcaRepository.findByNombreMarca("chinito");
+		Marca marcaNoExistente=marcaRepository.findByNombreMarcaIgnoreCase("chinito");
 		
 		assertNull(marcaNoExistente);
 		
 		//Comprobar que existe la marca y una vez borrada compruebo que no existe
-		Marca marcaborrar=marcaRepository.findByNombreMarca("xiaomiseraborrada");
+		Marca marcaborrar=marcaRepository.findByNombreMarcaIgnoreCase("xiaomiseraborrada");
 		assertEquals("xiaomiseraborrada", marcaborrar.getNombreMarca());
 		
 		marcaRepository.delete(marcaborrar);
-		marcaborrar=marcaRepository.findByNombreMarca("xiaomiseraborrada");
+		marcaborrar=marcaRepository.findByNombreMarcaIgnoreCase("xiaomiseraborrada");
 		assertNull(marcaborrar);
 		
 		

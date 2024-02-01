@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.apimovil.models.dto.MovilFilterRequestDTO;
+import com.apimovil.models.dto.UpdateRequestDTO;
 import com.apimovil.models.entities.Marca;
 import com.apimovil.models.entities.Modelo;
 import com.apimovil.models.entities.Movil;
@@ -106,17 +107,33 @@ public class MovilService implements IMovilService {
 	}
 
 	@Override
-	public boolean updateMovil(Movil primerMovil, Movil segundoMovil) {
-		// TODO Auto-generated method stub
+	public boolean updateMovil(UpdateRequestDTO updateRequestDTO) {
+		
+		Optional<Modelo> modelo = getModeloByNombreMarcaAndNombreModel(updateRequestDTO);
+		if(modelo.isPresent()) {
+			Movil movil=movilRepository.findByModelo(modelo.get());
+			movil.setPrecio(updateRequestDTO.getPrecio());
+			movilRepository.save(movil);
+			return true;
+		}
 		return false;
 	}
 	
 	
 	
-	
+	private Optional<Modelo> getModeloByNombreMarcaAndNombreModel(UpdateRequestDTO updateRequestDTO) {
+		return getModeloByNombreMarcaAndNombreModel(updateRequestDTO.getMarca(),updateRequestDTO.getModelo());
+	}
+
+	private Optional<Modelo> getModeloByNombreMarcaAndNombreModel(String nombreMarca, String nombreModelo) {
+		return marcaRepository.findByNombreMarcaIgnoreCase(nombreMarca).getModelos().stream()
+				.filter(e->e.getNombre().equalsIgnoreCase(nombreModelo))
+				.findFirst();
+
+	}
 	
 	private Marca createMarcaIfNotExist(Marca marcaInput) {
-		Marca marca = marcaRepository.findByNombreMarca(marcaInput.getNombreMarca());
+		Marca marca = marcaRepository.findByNombreMarcaIgnoreCase(marcaInput.getNombreMarca());
 		if(marca==null) {
 			marca = marcaRepository.save(marcaInput);
 		}
