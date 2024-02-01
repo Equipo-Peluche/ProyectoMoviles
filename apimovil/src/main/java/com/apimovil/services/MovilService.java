@@ -63,9 +63,8 @@ public class MovilService implements IMovilService {
 	}
 
 	@Override
-	public boolean createMovil(Movil movil) {
-		movilRepository.save(movil);
-		return false;
+	public Movil createMovil(Movil movil) {
+		return movilRepository.save(movil);
 	}
 
 	@Override

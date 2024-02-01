@@ -11,7 +11,7 @@ public interface IMovilService {
 	public List<ResumenDTO> getMovilesMasVistos(int cantidad);
 	public List<MovilDTO> getAllMoviles();
 	public List<MovilDTO> getMovilesFilter(MovilFilterRequestDTO movilRequestDTO);
-	public boolean createMovil(Movil movil);
+	public Movil createMovil(Movil movil);
 	public boolean removeMovil(Movil movil);
 	public boolean updateMovil(Movil primerMovil, Movil segundoMovil);
 	
