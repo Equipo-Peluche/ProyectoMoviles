@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.apimovil.models.dto.MovilFilterRequestDTO;
@@ -101,8 +102,13 @@ public class MovilService implements IMovilService {
 
 	@Override
 	public boolean removeMovil(Movil movil) {
-		// TODO Auto-generated method stub
+		try {
+		movilRepository.delete(movil);
+		return true;
+		}catch(DataAccessException e){
+		e.printStackTrace();
 		return false;
+		}
 	}
 
 	@Override
