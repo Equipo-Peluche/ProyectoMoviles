@@ -76,7 +76,15 @@ public class MovilService implements IMovilService {
 
 	@Override
 	public boolean updateMovil(Movil primerMovil, Movil segundoMovil) {
-		// TODO Auto-generated method stub
+		if (primerMovil != null || segundoMovil != null) {
+			//Aztualizar los campos del primer movil con los del segundo
+			primerMovil.setModelo(segundoMovil.getModelo());
+			primerMovil.setPrecio(segundoMovil.getPrecio());
+			
+			// Guardar la actualizacion en el repositorio
+			movilRepository.save(primerMovil);
+			return true;
+		}
 		return false;
 	}
 

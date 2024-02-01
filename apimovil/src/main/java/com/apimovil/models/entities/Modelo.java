@@ -1,5 +1,7 @@
 package com.apimovil.models.entities;
 
+import org.antlr.v4.runtime.misc.NotNull;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Modelo {
 	private String nombre;
 	@ManyToOne
 	@JoinColumn(name = "marca_id")
+	@NotNull
 	private Marca marca;
 	
 	public Modelo(String nombre,Marca marca) {
