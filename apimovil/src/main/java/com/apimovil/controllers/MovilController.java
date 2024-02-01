@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,7 +30,7 @@ public class MovilController {
 	}
 
 	@RequestMapping("/filter")
-	public ResponseEntity<List<MovilDTO>> filter(@RequestBody MovilFilterRequestDTO movilRequestDTO) {
+	public ResponseEntity<List<MovilDTO>> filter(@Validated @RequestBody MovilFilterRequestDTO movilRequestDTO) {
 		List<MovilDTO> moviles = movilService.getMovilesFilter(movilRequestDTO);
 		return ResponseEntity.ok(moviles);
 	}
@@ -39,14 +41,15 @@ public class MovilController {
 		return ResponseEntity.ok(moviles);
 	}
 	
-	@RequestMapping(value="/movil", method = RequestMethod.POST)
-	public ResponseEntity<String> introducirMovil() {
-		//TODO CAMBIAR E INTRODUCIR BIEN
-		//movilService.createMovil(new Movil(128, 8, 213.2, 33, 4100, true, 313, LocalDate.now(), null));
-		//movilService.createMovil(new Movil(64, 4, 177.2, 33, 3090, false, 199, LocalDate.now(), null));
-		//movilService.createMovil(new Movil(256, 12, 256.2, 33, 5900, true, 414, LocalDate.now(), null));
-		
-		return ResponseEntity.ok("Creado");
+
+	@PostMapping("/movil")
+	public ResponseEntity<Movil> introducirMovil(@RequestBody Movil movil) {
+		//TODO CAMBIAR E INTRODUCIR BIEN		
+		return ResponseEntity.ok(movilService.createMovil(movil));
+	}
+	@GetMapping("/movil")
+	public ResponseEntity<List<MovilDTO>> getAllMoviles() {
+		return ResponseEntity.ok(movilService.getAllMoviles());
 	}
 	
 }

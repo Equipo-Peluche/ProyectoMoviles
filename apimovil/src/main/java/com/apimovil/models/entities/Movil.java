@@ -86,5 +86,8 @@ public class Movil {
 	public String getNombreProcesador() {
 		return this.procesador.getNombre();
 	}
+	public Double getPulgadasPantalla() {
+		return tamanioPantalla.getPulgadas();
+	}
 	
 }
