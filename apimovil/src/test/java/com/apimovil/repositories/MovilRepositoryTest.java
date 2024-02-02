@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -57,6 +58,7 @@ class MovilRepositoryTest {
 		
 		//INICIANDO MODELOS
 		Modelo samsungModelo = new Modelo("s6", samsungMarca);
+		Modelo samsungModelo2 = new Modelo("s7", samsungMarca);
 		Modelo iphoneModelo = new Modelo("8 plus", iphoneMarca);
 		modeloRepository.save(iphoneModelo);
 		modeloRepository.save(samsungModelo);
@@ -76,9 +78,12 @@ class MovilRepositoryTest {
 		
 		
 		Movil samsungMovil = new Movil(lcd, samsungModelo, snapdragon, tamanio1, 128, 8, 231.4, 32.0, 4500, false, 359.99, LocalDate.now(), 122.3, 78.5 , 12.1, 0);
-		Movil iphoneMovil = new Movil(oled, iphoneModelo, m2, tamanio2, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
+//		Movil samsungMovil2 = new Movil(lcd, samsungModelo2, snapdragon, tamanio1, 64, 8, 231.4, 32.0, 4500, false, 359.99, LocalDate.now(), 122.3, 78.5 , 12.1, 0);
 		movilRepository.save(samsungMovil);
+		Movil iphoneMovil = new Movil(lcd, iphoneModelo, snapdragon, tamanio2, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
+//		movilRepository.save(samsungMovil2);
 		movilRepository.save(iphoneMovil);
+
 		
 		int esperado = 2;
 		assertEquals(esperado, movilRepository.findAll().size());
@@ -86,7 +91,30 @@ class MovilRepositoryTest {
 		assertEquals(esperado, movilRepository.findByBateriaGreaterThanEqual(5000).size());
 		assertEquals(esperado, movilRepository.findByCamaraGreaterThanEqual(40).size());
 		assertEquals(esperado, movilRepository.findByNfc(true).size());
+
+		assertEquals(2, movilRepository.findAll().size());
+		assertEquals(2, modeloRepository.findAll().size());
+		assertEquals(2, marcaRepository.findAll().size());
+		
+		
+		movilRepository.delete(samsungMovil);
+		assertEquals(1, movilRepository.findAll().size());
+		assertEquals(1, modeloRepository.findAll().size());
+		assertEquals(2, marcaRepository.findAll().size());
+		
+		
 		
 	}
 
+	@AfterEach
+	void aftereach() {
+		tecnologiaPantallaRepository.deleteAll();
+		movilRepository.deleteAll();
+		dimensionRepository.deleteAll();
+		modeloRepository.deleteAll();
+		procesadorRepository.deleteAll();
+		marcaRepository.deleteAll();
+		tamanioPantallaRepository.deleteAll();
+	}
+	
 }

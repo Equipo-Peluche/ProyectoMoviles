@@ -2,10 +2,11 @@ package com.apimovil.models.entities;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,8 @@ public class Procesador {
 	private double gigahercios;
     @NotNull(message = "El nombre del procesador no puede ser nulo")
 	private String nombre;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER)
+	@JsonIgnore
 	private List<Movil> movil;
 	
 	public Procesador(double gigahercios, String nombre) {

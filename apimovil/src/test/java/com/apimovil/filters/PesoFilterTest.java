@@ -19,8 +19,7 @@ import com.apimovil.utiles.DoubleIntervalo;
 @SpringBootTest
 class PesoFilterTest {
 
-	@Autowired
-	MovilRepository mRepository;
+	List<Movil> moviles;
 
 	@Test
 	void testPesoFilter() {
@@ -31,7 +30,7 @@ class PesoFilterTest {
 		Movil movil_3 = new Movil(null, null, null, null, 512, 12, 160.0, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
 		
         // Guardar los móviles en la base de datos
-		mRepository.saveAll(List.of(movil_1, movil_2, movil_3));
+		moviles=List.of(movil_1, movil_2, movil_3);
 		
 		// Crear una solicitud de filtro con un intervalo de peso
         MovilFilterRequestDTO request = new MovilFilterRequestDTO();
@@ -40,7 +39,7 @@ class PesoFilterTest {
 		
 		// Aplicar el filtro
         PesoFilter pesoFilter = new PesoFilter();
-        List<Movil> resultadoFiltro = pesoFilter.filter(mRepository.findAll(), request);
+        List<Movil> resultadoFiltro = pesoFilter.filter(moviles, request);
         
         // Verificar que el resultado sea el esperado
         assertEquals(2, resultadoFiltro.size());
@@ -48,9 +47,6 @@ class PesoFilterTest {
         assertEquals(160, resultadoFiltro.get(1).getPeso());   
 	}
 	
-	@AfterEach
-	void afterEach() {
-		mRepository.deleteAll();
-	}
+
 
 }

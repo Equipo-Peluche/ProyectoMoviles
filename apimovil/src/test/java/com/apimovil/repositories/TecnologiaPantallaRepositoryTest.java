@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -52,7 +53,8 @@ class TecnologiaPantallaRepositoryTest {
 		
 //		FindByNombre
 		TecnologiaPantalla tecnologiaPantalla = tecnologiaPantallaRepository.findById(3l).get();
-		assertEquals(tecnologiaPantalla, tecnologiaPantallaRepository.findByNombre("OLED"));
+		TecnologiaPantalla tecnologiaNombre=tecnologiaPantallaRepository.findByNombre("OLED").stream().findFirst().get();
+		assertEquals(tecnologiaPantalla,tecnologiaNombre );
 		
 		
 		
@@ -66,6 +68,11 @@ class TecnologiaPantallaRepositoryTest {
 	
 		
 		
+	}
+	@AfterEach
+	void aftereach() {
+		movilRepository.deleteAll();
+		tecnologiaPantallaRepository.deleteAll();
 	}
 
 }

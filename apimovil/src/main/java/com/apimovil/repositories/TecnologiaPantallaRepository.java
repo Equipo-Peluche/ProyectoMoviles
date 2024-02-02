@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface TecnologiaPantallaRepository extends JpaRepository<TecnologiaPantalla, Long> {
-	public TecnologiaPantalla findByNombre(String nombre);
+	public List<TecnologiaPantalla> findByNombre(String nombre);
 }

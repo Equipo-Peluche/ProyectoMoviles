@@ -3,6 +3,7 @@ package com.apimovil.models.entities;
 
 import javax.validation.constraints.NotNull;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +21,10 @@ import lombok.NoArgsConstructor;
 public class Modelo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private long id;
+	private Long id;
+	@NotNull
 	private String nombre;
-	@ManyToOne
+	@ManyToOne()
 	@JoinColumn(name = "marca_id")
     @NotNull(message = "El nombre de modelo no puede ser nulo")
 	private Marca marca;
@@ -32,7 +34,7 @@ public class Modelo {
 		this.marca = marca;
 	}
 	
-	public String getMarca() {
+	public String getNombreMarca() {
 		return this.marca.getNombreMarca();
 	}
 }

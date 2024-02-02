@@ -3,15 +3,17 @@ package com.apimovil.models.entities;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -24,9 +26,10 @@ public class Movil {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private long id;
 	@ManyToOne
+	@NotNull
 	private Procesador procesador;
 	// private Pantalla pantalla;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(unique = true)
 	@NotNull(message = "El modelo no puede ser nulo")
 	private Modelo modelo;
@@ -60,6 +63,7 @@ public class Movil {
 	private double precio;
 	
 	@NotNull(message = "La fecha de lanzamiento no puede ser nula")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate fechaLanzamiento;
 	
 	private long visitas;
@@ -99,6 +103,9 @@ public class Movil {
 	}
 
 	public String getNombreMarca() {
+		return this.modelo.getNombreMarca();
+	}
+	public Marca getMarca() {
 		return this.modelo.getMarca();
 	}
 
@@ -116,6 +123,10 @@ public class Movil {
 
 	public String getNombreProcesador() {
 		return this.procesador.getNombre();
+	}
+	
+	public void aumentarVisita() {
+		visitas++;
 	}
 
 }

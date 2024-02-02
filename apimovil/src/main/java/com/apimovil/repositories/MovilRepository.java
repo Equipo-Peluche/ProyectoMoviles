@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.apimovil.models.entities.Modelo;
 import com.apimovil.models.entities.Movil;
 
 @Repository
@@ -25,6 +26,8 @@ public interface MovilRepository extends JpaRepository<Movil, Long>{
 	public List<Movil> findByPrecioBetween(double precio1, double precio2);
 	public List<Movil> findByRamGreaterThanEqual(int ram);
 	public List<Movil> findByRam(int ram);
+	public Movil findByModelo(Modelo modelo);
+	public void delete(Movil movil);
 	//TODO PROCESADOR Y PANTALLA FIND BY
 	
 }

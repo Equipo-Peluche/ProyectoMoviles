@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -28,7 +30,8 @@ public class TecnologiaPantalla {
 	@NotNull(message = "El nombre de tecnología de pantalla no puede ser nula")
 	private String nombre;
 	
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "tecnologiaPantalla")
+	@OneToMany(cascade = CascadeType.REMOVE,fetch = FetchType.EAGER, mappedBy = "tecnologiaPantalla")
+	@JsonIgnore
 	private List<Movil> moviles = new ArrayList<>();
 	
 	public TecnologiaPantalla(String nombre) {
