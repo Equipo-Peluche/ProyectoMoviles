@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 
-public class MovilRequestRemoveDTO {
+public class MovilBasicRequestDTO {
 	private String marca;
 	private String modelo;
 	
-	public MovilRequestRemoveDTO(String marca, String modelo) {
+	public MovilBasicRequestDTO(String marca, String modelo) {
 		super();
 		this.marca = marca;
 		this.modelo = modelo;

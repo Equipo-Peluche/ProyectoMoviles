@@ -34,6 +34,7 @@ public class Marca {
 	private String nombreMarca;
 	
 	@OneToMany( cascade = CascadeType.REMOVE ,mappedBy = "marca",fetch = FetchType.EAGER)
+	@JsonIgnore
 	public List<Modelo> modelos= new ArrayList<>();
 	
 	

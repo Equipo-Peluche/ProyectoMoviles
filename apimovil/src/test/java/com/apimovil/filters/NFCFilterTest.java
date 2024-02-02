@@ -3,6 +3,7 @@ package com.apimovil.filters;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -17,9 +18,7 @@ import com.apimovil.repositories.MovilRepository;
 @SpringBootTest
 class NFCFilterTest {
 
-	@Autowired
-	MovilRepository mRepository;
-	
+	List<Movil> moviles= new ArrayList<>();
 	@Test
 	void testNFCFilter() {
 		
@@ -29,7 +28,7 @@ class NFCFilterTest {
 		Movil movil_3 = new Movil(null, null, null, null, 512, 12, 160.0, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
 		
         // Guardar los móviles en la base de datos
-		mRepository.saveAll(List.of(movil_1, movil_2, movil_3));
+		moviles=List.of(movil_1, movil_2, movil_3);
 		
         // Crear una solicitud de filtro con NFC = true y con NFC = false
         MovilFilterRequestDTO requestTrue = new MovilFilterRequestDTO();
@@ -39,19 +38,14 @@ class NFCFilterTest {
         
         // Aplicar el filtro para NFC = true y con NFC = false
         NFCFilter nfcFilterTrue = new NFCFilter();
-        List<Movil> resultadoFiltroTrue = nfcFilterTrue.filter(mRepository.findAll(), requestTrue);
+        List<Movil> resultadoFiltroTrue = nfcFilterTrue.filter(moviles, requestTrue);
 
         NFCFilter nfcFilterFalse = new NFCFilter();
-        List<Movil> resultadoFiltroFalse = nfcFilterFalse.filter(mRepository.findAll(), requestFalse);
+        List<Movil> resultadoFiltroFalse = nfcFilterFalse.filter(moviles, requestFalse);
 
         // Verificar que los resultados sean los esperados
         assertEquals(2, resultadoFiltroTrue.size());
         assertEquals(1, resultadoFiltroFalse.size());
-	}
-	
-	@AfterEach
-	void afterEach() {
-		mRepository.deleteAll();
 	}
 
 }

@@ -5,12 +5,12 @@ import com.apimovil.models.entities.Modelo;
 import lombok.Data;
 
 @Data
-public class UpdateRequestDTO {
+public class MovilUpdateRequestDTO {
 	private String marca;
 	private String modelo;
 	private Double precio;
 	
-	public UpdateRequestDTO(String marca,String modelo, Double precio) {
+	public MovilUpdateRequestDTO(String marca,String modelo, Double precio) {
 		super();
 		this.marca=marca;
 		this.modelo = modelo;

@@ -1,14 +1,15 @@
 package com.apimovil.models.mappers;
 
-import com.apimovil.models.dto.UpdateRequestDTO;
+import com.apimovil.models.dto.MovilUpdateRequestDTO;
 import com.apimovil.models.entities.Movil;
 
-public class UpdateRequestDTOMapper implements MyMapper<Movil, UpdateRequestDTO> {
+public class UpdateRequestDTOMapper implements MyMapper<Movil, MovilUpdateRequestDTO> {
 
 	@Override
-	public UpdateRequestDTO map(Movil t) {
-		return new UpdateRequestDTO(
-				t.getModelo(),
+	public MovilUpdateRequestDTO map(Movil t) {
+		return new MovilUpdateRequestDTO(
+				t.getNombreModelo(),
+				t.getNombreMarca(),
 				t.getPrecio()
 				);
 	}

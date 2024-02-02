@@ -23,10 +23,7 @@ import com.apimovil.repositories.ProcesadorRepository;
 @SpringBootTest
 class ProcesadorFilterTest {
 
-	@Autowired
-	MovilRepository mRepository;
-	@Autowired
-	ProcesadorRepository procesadorRepository;
+	List<Movil> moviles;
 		
 	@Test
 	 public void testProcesadorFilter() {
@@ -34,7 +31,6 @@ class ProcesadorFilterTest {
 	        Procesador procesadorA = new Procesador(2.0, "Ryzen 5");
 	        Procesador procesadorB = new Procesador(3.0, "Intel core i5");
 	        
-	        procesadorRepository.saveAll(List.of(procesadorA,procesadorB));
 	        
 
 	        // Crear tres móviles con diferentes procesadores y guardarlos en la base de datos
@@ -43,7 +39,7 @@ class ProcesadorFilterTest {
 			Movil movil_3 = new Movil(null, null, procesadorA, null, 512, 12, 251.4, 102.0, 5500, true, 1199.99, LocalDate.now(), 152.3, 89.5 , 9.1, 0);
 
 	        // Guardar los móviles en la base de datos
-	        mRepository.saveAll(List.of(movil_1, movil_2, movil_3));
+	        moviles=List.of(movil_1, movil_2, movil_3);
 
 	        // Crear una solicitud de filtro
 	        MovilFilterRequestDTO request = new MovilFilterRequestDTO();
@@ -51,16 +47,11 @@ class ProcesadorFilterTest {
 
 	        // Aplicar el filtro
 	        ProcesadorFilter procesadorFilter = new ProcesadorFilter();
-	        List<Movil> resultadoFiltro = procesadorFilter.filter(mRepository.findAll(), request);
+	        List<Movil> resultadoFiltro = procesadorFilter.filter(moviles, request);
 
 	        // Verificar que el resultado sea el esperado
 	        assertEquals(2, resultadoFiltro.size());
 	        assertEquals("Ryzen 5", resultadoFiltro.get(0).getNombreProcesador());
 	        assertEquals("Ryzen 5", resultadoFiltro.get(1).getNombreProcesador());
 	    }
-	@AfterEach
-	void afterEach() {
-		mRepository.deleteAll();
-		procesadorRepository.deleteAll();
-	}
 	}

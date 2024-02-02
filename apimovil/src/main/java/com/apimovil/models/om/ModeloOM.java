@@ -10,6 +10,9 @@ public class ModeloOM implements IOM<Modelo>{
 
 	private MarcaOM marcaOM;
 	
+	public ModeloOM() {
+		this.marcaOM=new MarcaOM();
+	}
 	public ModeloOM(MarcaOM marcaOM) {
 		super();
 		this.marcaOM = marcaOM;

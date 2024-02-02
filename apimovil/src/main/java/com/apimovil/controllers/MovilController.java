@@ -1,14 +1,12 @@
 package com.apimovil.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import com.apimovil.models.dto.UpdateRequestDTO;
-import com.apimovil.models.dto.MovilRequestRemoveDTO;
+import com.apimovil.models.dto.MovilUpdateRequestDTO;
+import com.apimovil.models.dto.MovilBasicRequestDTO;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,22 +43,27 @@ public class MovilController {
 	
 
 	@PostMapping("/movil")
-	public ResponseEntity<Movil> introducirMovil(@RequestBody Movil movil) {
+	public ResponseEntity<Boolean> introducirMovil(@RequestBody Movil movil) {
 		//TODO CAMBIAR E INTRODUCIR BIEN		
 		return ResponseEntity.ok(movilService.createMovil(movil));
 	}
-	@GetMapping("/movil")
+	@GetMapping
 	public ResponseEntity<List<MovilDTO>> getAllMoviles() {
 		return ResponseEntity.ok(movilService.getAllMoviles());
 	}
+	
+	@GetMapping("/movil")
+	public ResponseEntity<MovilDTO> findByModelo(@RequestBody MovilBasicRequestDTO updateRequestDTO) {
+		return ResponseEntity.ok(movilService.findByRequest(updateRequestDTO));
+	}
 
 	@RequestMapping(value = "/movil",method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> update(@RequestBody UpdateRequestDTO updateRequestDTO) {
+	public ResponseEntity<Boolean> update(@RequestBody MovilUpdateRequestDTO updateRequestDTO) {
 		return ResponseEntity.ok(movilService.updateMovil(updateRequestDTO));
 	}
 	
 	@DeleteMapping("/movil")
-	public ResponseEntity<Boolean> eliminarMovil(@RequestBody MovilRequestRemoveDTO movilRequestRemoveDTO){
+	public ResponseEntity<Boolean> eliminarMovil(@RequestBody MovilBasicRequestDTO movilRequestRemoveDTO){
 		
 		return ResponseEntity.ok(movilService.removeMovil(movilRequestRemoveDTO));
 		

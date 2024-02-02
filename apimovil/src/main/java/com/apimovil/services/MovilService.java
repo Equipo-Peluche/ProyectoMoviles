@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.apimovil.models.dto.MovilDTO;
 import com.apimovil.models.dto.MovilFilterRequestDTO;
-import com.apimovil.models.dto.UpdateRequestDTO;
-import com.apimovil.models.dto.MovilRequestRemoveDTO;
+import com.apimovil.models.dto.MovilUpdateRequestDTO;
+import com.apimovil.models.dto.MovilBasicRequestDTO;
 import com.apimovil.models.entities.Marca;
 import com.apimovil.models.entities.Modelo;
 import com.apimovil.models.dto.ResumenDTO;
@@ -87,9 +87,21 @@ public class MovilService implements IMovilService {
 				.map(movil-> movilDTOMapper.map(movil))
 				.collect(Collectors.toList());
 	}
+	
+	@Override
+	public MovilDTO findByRequest(MovilBasicRequestDTO movilRequestDTO) {
+		Optional<Modelo> modelo = getModeloByNombreMarcaAndNombreModel(movilRequestDTO);
+		if(modelo.isPresent()) {
+			Movil movilModificar = movilRepository.findByModelo(modelo.get());
+			movilModificar.aumentarVisita();
+			movilRepository.save(movilModificar);
+			return movilDTOMapper.map(movilModificar);			
+		}
+		return null;
+	}
 
 	@Override
-	public Movil createMovil(Movil movil) {
+	public boolean createMovil(Movil movil) {
 		Marca marca=movil.getMarca();
 		Modelo modelo = movil.getModelo();
 		Procesador procesador = movil.getProcesador();
@@ -110,13 +122,13 @@ public class MovilService implements IMovilService {
 		movil.setTamanioPantalla(tamanioPantalla);
 		movil.setTecnologiaPantalla(tecnologiaPantalla);
 		Movil save = movilRepository.save(movil);
-		return save;
+		return save!=null;
 	}
 
 
 	@Override
-	public boolean removeMovil(MovilRequestRemoveDTO movilRequestRemoveDTO) {
-		Optional<Modelo> modelo = getModeloByNombreMarcaAndNombreModel(movilRequestRemoveDTO.getMarca(),movilRequestRemoveDTO.getModelo());
+	public boolean removeMovil(MovilBasicRequestDTO movilRequestRemoveDTO) {
+		Optional<Modelo> modelo = getModeloByNombreMarcaAndNombreModel(movilRequestRemoveDTO);
 		if(modelo.isPresent()) {
 			
 			Movil movil = movilRepository.findByModelo(modelo.get());
@@ -132,7 +144,7 @@ public class MovilService implements IMovilService {
 	}
 
 	@Override
-	public boolean updateMovil(UpdateRequestDTO updateRequestDTO) {
+	public boolean updateMovil(MovilUpdateRequestDTO updateRequestDTO) {
 		
 		Optional<Modelo> modelo = getModeloByNombreMarcaAndNombreModel(updateRequestDTO);
 		if(modelo.isPresent()) {
@@ -144,7 +156,11 @@ public class MovilService implements IMovilService {
 		return false;
 	}
 	
-	private Optional<Modelo> getModeloByNombreMarcaAndNombreModel(UpdateRequestDTO updateRequestDTO) {
+	private Optional<Modelo> getModeloByNombreMarcaAndNombreModel(MovilBasicRequestDTO basicRequestDTO) {
+		return getModeloByNombreMarcaAndNombreModel(basicRequestDTO.getMarca(),basicRequestDTO.getModelo());
+	}
+	
+	private Optional<Modelo> getModeloByNombreMarcaAndNombreModel(MovilUpdateRequestDTO updateRequestDTO) {
 		return getModeloByNombreMarcaAndNombreModel(updateRequestDTO.getMarca(),updateRequestDTO.getModelo());
 	}
 

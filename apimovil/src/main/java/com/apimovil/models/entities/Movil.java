@@ -3,6 +3,7 @@ package com.apimovil.models.entities;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -62,6 +63,7 @@ public class Movil {
 	private double precio;
 	
 	@NotNull(message = "La fecha de lanzamiento no puede ser nula")
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	private LocalDate fechaLanzamiento;
 	
 	private long visitas;
@@ -121,6 +123,10 @@ public class Movil {
 
 	public String getNombreProcesador() {
 		return this.procesador.getNombre();
+	}
+	
+	public void aumentarVisita() {
+		visitas++;
 	}
 
 }
