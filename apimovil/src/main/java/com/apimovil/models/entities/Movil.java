@@ -34,7 +34,7 @@ public class Movil {
 	@NotNull(message = "El modelo no puede ser nulo")
 	private Modelo modelo;
 	
-	@OneToOne
+	@ManyToOne
 	@NotNull(message = "El tamaño de pantalla no puede ser nulo")
 	private TamanioPantalla tamanioPantalla;
 	

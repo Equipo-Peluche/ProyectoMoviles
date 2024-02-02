@@ -13,9 +13,11 @@ import lombok.Data;
 @Data
 public class ResumenDTO {
 	@NotNull(message = "El modelo no puede ser nulo")
-	private Modelo modelo;
+	private String marca;
+	@NotNull(message = "El modelo no puede ser nulo")
+	private String modelo;
 	@NotNull(message = "El tamaño de pantalla no puede ser nulo")
-	private TamanioPantalla tamanioPantalla;
+	private Double tamanioPantalla;
 	@Min(value = 1, message = "El almacenamiento debe ser mayor que 0")
 	private int almacenamiento;
 	@Min(value = 1, message = "La RAM debe ser mayor que 0")
@@ -27,9 +29,10 @@ public class ResumenDTO {
 	@DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor que cero")
 	private double precio;
 	
-	public ResumenDTO(Modelo modelo, TamanioPantalla tamanioPantalla, int almacenamiento, double ram, double peso,
+	public ResumenDTO(String marca, String modelo, Double tamanioPantalla, int almacenamiento, double ram, double peso,
 			int bateria, double precio) {
 		super();
+		this.marca = marca;
 		this.modelo = modelo;
 		this.tamanioPantalla = tamanioPantalla;
 		this.almacenamiento = almacenamiento;

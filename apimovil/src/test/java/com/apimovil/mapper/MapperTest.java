@@ -40,7 +40,7 @@ class MapperTest {
 		
 //		mapToResumenDTO
 		ResumenDTO resumenDTO = ResumenMapper.map(movilUno);
-		assertEquals(resumenDTO.getModelo().getNombre(), movilUno.getNombreModelo());
+		assertEquals(resumenDTO.getModelo(), movilUno.getNombreModelo());
 		
 //		mapToEntity (De momento no)
 		

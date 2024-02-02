@@ -9,10 +9,11 @@ public class MovilDTOMapper implements MyMapper<Movil, MovilDTO>{
 	@Override
 	public MovilDTO map(Movil t) {
 		MovilDTO movilDTO = new MovilDTO(
-				t.getProcesador(),
-				t.getModelo(),
-				t.getTamanioPantalla(),
-				t.getTecnologiaPantalla(),
+				t.getNombreProcesador(),
+				t.getNombreMarca(),
+				t.getNombreModelo(),
+				t.getPulgadasPantalla(),
+				t.getNombreTecnologiaPantalla(),
 				t.getAlmacenamiento(),
 				t.getRam(),
 				t.getPeso(),
