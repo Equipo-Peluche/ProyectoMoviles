@@ -8,8 +8,9 @@ public class ResumenDTOMapper implements MyMapper<Movil, ResumenDTO> {
 	@Override
 	public ResumenDTO map(Movil t) {
 		return new ResumenDTO(
-				t.getModelo(),
-				t.getTamanioPantalla(),
+				t.getNombreMarca(),
+				t.getNombreModelo(),
+				t.getPulgadasPantalla(),
 				t.getAlmacenamiento(),
 				t.getRam(),
 				t.getPeso(),

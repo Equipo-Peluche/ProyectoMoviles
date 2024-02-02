@@ -17,13 +17,16 @@ import lombok.Data;
 
 @Data
 public class MovilDTO {
-	private Procesador procesador;
+	@NotNull(message = "El procesador no puede ser nulo")
+	private String procesador;
 	@NotNull(message = "El modelo no puede ser nulo")
-	private Modelo modelo;
+	private String marca;
+	@NotNull(message = "El modelo no puede ser nulo")
+	private String modelo;
 	@NotNull(message = "El tamaño de pantalla no puede ser nulo")
-	private TamanioPantalla tamanioPantalla;
+	private Double tamanioPantalla;
 	@NotNull(message = "La tecnología de pantalla no puede ser nula")
-	private TecnologiaPantalla tecnologiaPantalla;
+	private String tecnologiaPantalla;
 	@Min(value = 1, message = "El almacenamiento debe ser mayor que 0")
 	private int almacenamiento;
 	@Min(value = 1, message = "La RAM debe ser mayor que 0")
@@ -49,12 +52,13 @@ public class MovilDTO {
 	@Positive(message = "El grosor debe ser mayor que cero")
 	private Double grosor;
 	
-	public MovilDTO(Procesador procesador, Modelo modelo, TamanioPantalla tamanioPantalla,
-			TecnologiaPantalla tecnologiaPantalla, int almacenamiento, double ram, double peso, double camara,
+	public MovilDTO(String procesador,String marca, String modelo, Double tamanioPantalla,
+			String tecnologiaPantalla, int almacenamiento, double ram, double peso, double camara,
 			int bateria, boolean nfc, double precio, LocalDate fechaLanzamiento, double alto, double ancho,
 			double grosor) {
 		super();
 		this.procesador = procesador;
+		this.marca = marca;
 		this.modelo = modelo;
 		this.tamanioPantalla = tamanioPantalla;
 		this.tecnologiaPantalla = tecnologiaPantalla;
