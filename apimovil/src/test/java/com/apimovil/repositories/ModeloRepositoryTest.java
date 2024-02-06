@@ -9,9 +9,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
+import com.apimovil.components.Populate;
 import com.apimovil.models.entities.Marca;
 import com.apimovil.models.entities.Modelo;
+import com.apimovil.services.MovilService;
 
 @SpringBootTest
 class ModeloRepositoryTest {
@@ -21,11 +24,15 @@ class ModeloRepositoryTest {
 	@Autowired
 	private MarcaRepository marcaRepository;
 
+	@MockBean
+	private MovilService movilService;
+	private Populate populate;
 	
 	
 	@BeforeEach
 	void initial() {
 		modeloRepository.deleteAll();
+		marcaRepository.deleteAll();
 	}
 
 	@Test

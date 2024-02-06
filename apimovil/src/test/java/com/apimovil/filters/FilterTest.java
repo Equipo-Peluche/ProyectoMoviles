@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -120,10 +121,24 @@ class FilterTest {
 		assertEquals(expected, moviles.size());
 
 	}
+	
+	@BeforeEach
+	void before() {
+		tecnologiaPantallaRepository.deleteAll();
+		modeloRepository.deleteAll();
+		marcaRepository.deleteAll();
+		procesadorRepository.deleteAll();
+		pantallaRepository.deleteAll();
+		mRepository.deleteAll();
+	}
 
 	@AfterEach
 	void afterEach() {
 		tecnologiaPantallaRepository.deleteAll();
+		modeloRepository.deleteAll();
+		marcaRepository.deleteAll();
+		procesadorRepository.deleteAll();
+		pantallaRepository.deleteAll();
 		mRepository.deleteAll();
 	}
 

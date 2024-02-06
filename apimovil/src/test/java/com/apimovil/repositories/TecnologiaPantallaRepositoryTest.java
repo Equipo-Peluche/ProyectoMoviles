@@ -2,6 +2,7 @@ package com.apimovil.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -47,15 +49,12 @@ class TecnologiaPantallaRepositoryTest {
 //		movilRepository.save(movil2);
 		
 //		FindById
-		Optional<TecnologiaPantalla> byId1 = tecnologiaPantallaRepository.findById(1l);
-		assertNotNull(byId1);
-		assertEquals("LCD", byId1.get().getNombre());
+		Optional<TecnologiaPantalla> nombre = Optional.of(tecnologiaPantallaRepository.findByNombre("LCD"));
+		Optional<TecnologiaPantalla> byId = tecnologiaPantallaRepository.findById(nombre.get().getId());
+		assertTrue(byId.isPresent());
+		assertEquals("LCD", byId.get().getNombre());
 		
-//		FindByNombre
-		TecnologiaPantalla tecnologiaPantalla = tecnologiaPantallaRepository.findById(3l).get();
-		TecnologiaPantalla tecnologiaNombre=tecnologiaPantallaRepository.findByNombre("OLED").stream().findFirst().get();
-		assertEquals(tecnologiaPantalla,tecnologiaNombre );
-		
+
 		
 		
 //		Coger Lista de moviles por tecnologia de Pantalla

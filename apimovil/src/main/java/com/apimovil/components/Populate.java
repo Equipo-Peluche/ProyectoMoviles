@@ -20,10 +20,10 @@ public class Populate {
 		populateInsert();
 	}
 
-	@Transactional
 	private void populateInsert() {
 		for (Movil movil : movilOM.getData()) {
 			movilService.createMovil(movil);
 		}
 	}
+	
 }

@@ -210,13 +210,14 @@ public class MovilService implements IMovilService {
 	}
 	
 	private TecnologiaPantalla createTecnologiantallaIfNotExist(TecnologiaPantalla tecnologiaPantallaInput) {
-		TecnologiaPantalla tecnologiaPantalla = tecnologiaPantallaRepository.findByNombre(tecnologiaPantallaInput.getNombre()).stream().findFirst().orElse(null);
+		TecnologiaPantalla tecnologiaPantalla = tecnologiaPantallaRepository.findByNombre(tecnologiaPantallaInput.getNombre());
 				
 		if(tecnologiaPantalla==null) {
 			tecnologiaPantalla=tecnologiaPantallaRepository.save(tecnologiaPantallaInput);
 		}
 		return tecnologiaPantalla;
 	}
+	
 	
 	
 	
