@@ -1,5 +1,7 @@
 package com.apimovil.models.dto;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,7 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class MovilBasicRequestDTO {
+	@NotNull(message = "La marca no puede ser nulo")
 	private String marca;
+	@NotNull(message = "El no puede ser nulo")
 	private String modelo;
 	
 	public MovilBasicRequestDTO(String marca, String modelo) {

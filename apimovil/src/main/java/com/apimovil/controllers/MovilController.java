@@ -43,7 +43,7 @@ public class MovilController {
 	
 
 	@PostMapping("/movil")
-	public ResponseEntity<Boolean> introducirMovil(@RequestBody Movil movil) {
+	public ResponseEntity<Boolean> introducirMovil(@Validated @RequestBody Movil movil) {
 		//TODO CAMBIAR E INTRODUCIR BIEN		
 		return ResponseEntity.ok(movilService.createMovil(movil));
 	}
@@ -53,17 +53,17 @@ public class MovilController {
 	}
 	
 	@GetMapping("/movil")
-	public ResponseEntity<MovilDTO> findByModelo(@RequestBody MovilBasicRequestDTO updateRequestDTO) {
+	public ResponseEntity<MovilDTO> findByModelo(@Validated @RequestBody MovilBasicRequestDTO updateRequestDTO) {
 		return ResponseEntity.ok(movilService.findByRequest(updateRequestDTO));
 	}
 
 	@RequestMapping(value = "/movil",method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> update(@RequestBody MovilUpdateRequestDTO updateRequestDTO) {
+	public ResponseEntity<Boolean> update(@Validated @RequestBody MovilUpdateRequestDTO updateRequestDTO) {
 		return ResponseEntity.ok(movilService.updateMovil(updateRequestDTO));
 	}
 	
 	@DeleteMapping("/movil")
-	public ResponseEntity<Boolean> eliminarMovil(@RequestBody MovilBasicRequestDTO movilRequestRemoveDTO){
+	public ResponseEntity<Boolean> eliminarMovil(@Validated @RequestBody MovilBasicRequestDTO movilRequestRemoveDTO){
 		
 		return ResponseEntity.ok(movilService.removeMovil(movilRequestRemoveDTO));
 		
