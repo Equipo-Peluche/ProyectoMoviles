@@ -1,7 +1,6 @@
 package com.apimovil.models.dto;
 
-import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import com.apimovil.models.entities.Modelo;
 

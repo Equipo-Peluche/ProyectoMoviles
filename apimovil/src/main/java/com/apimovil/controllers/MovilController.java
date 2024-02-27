@@ -3,7 +3,6 @@ package com.apimovil.controllers;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.apimovil.models.dto.MovilUpdateRequestDTO;
 import com.apimovil.models.dto.MovilBasicRequestDTO;
@@ -18,6 +17,8 @@ import com.apimovil.models.dto.ResumenDTO;
 import com.apimovil.models.entities.Movil;
 import com.apimovil.services.MovilService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("moviles")
 public class MovilController {
@@ -30,7 +31,7 @@ public class MovilController {
 	}
 
 	@RequestMapping("/filter")
-	public ResponseEntity<List<MovilDTO>> filter(@Validated @RequestBody MovilFilterRequestDTO movilRequestDTO) {
+	public ResponseEntity<List<MovilDTO>> filter(@Valid @RequestBody MovilFilterRequestDTO movilRequestDTO) {
 		List<MovilDTO> moviles = movilService.getMovilesFilter(movilRequestDTO);
 		return ResponseEntity.ok(moviles);
 	}
@@ -43,7 +44,7 @@ public class MovilController {
 	
 
 	@PostMapping("/movil")
-	public ResponseEntity<Boolean> introducirMovil(@Validated @RequestBody Movil movil) {
+	public ResponseEntity<Boolean> introducirMovil(@Valid @RequestBody Movil movil) {
 		//TODO CAMBIAR E INTRODUCIR BIEN		
 		return ResponseEntity.ok(movilService.createMovil(movil));
 	}
@@ -53,17 +54,17 @@ public class MovilController {
 	}
 	
 	@GetMapping("/movil")
-	public ResponseEntity<MovilDTO> findByModelo(@Validated @RequestBody MovilBasicRequestDTO updateRequestDTO) {
+	public ResponseEntity<MovilDTO> findByModelo(@Valid @RequestBody MovilBasicRequestDTO updateRequestDTO) {
 		return ResponseEntity.ok(movilService.findByRequest(updateRequestDTO));
 	}
 
 	@RequestMapping(value = "/movil",method = RequestMethod.PUT)
-	public ResponseEntity<Boolean> update(@Validated @RequestBody MovilUpdateRequestDTO updateRequestDTO) {
+	public ResponseEntity<Boolean> update(@Valid @RequestBody MovilUpdateRequestDTO updateRequestDTO) {
 		return ResponseEntity.ok(movilService.updateMovil(updateRequestDTO));
 	}
 	
 	@DeleteMapping("/movil")
-	public ResponseEntity<Boolean> eliminarMovil(@Validated @RequestBody MovilBasicRequestDTO movilRequestRemoveDTO){
+	public ResponseEntity<Boolean> eliminarMovil(@Valid @RequestBody MovilBasicRequestDTO movilRequestRemoveDTO){
 		
 		return ResponseEntity.ok(movilService.removeMovil(movilRequestRemoveDTO));
 		

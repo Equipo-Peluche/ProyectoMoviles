@@ -1,7 +1,8 @@
 package com.apimovil.models.dto;
 
-import javax.validation.constraints.NotNull;
 
+
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

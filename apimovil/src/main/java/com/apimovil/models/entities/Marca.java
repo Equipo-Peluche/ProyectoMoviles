@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;

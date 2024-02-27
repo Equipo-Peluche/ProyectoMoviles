@@ -3,8 +3,7 @@ package com.apimovil.models.entities;
 import java.util.ArrayList;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.*;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

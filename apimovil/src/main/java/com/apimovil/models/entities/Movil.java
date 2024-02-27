@@ -1,7 +1,7 @@
 package com.apimovil.models.entities;
 
 import java.time.LocalDate;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

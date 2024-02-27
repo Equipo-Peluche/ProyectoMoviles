@@ -2,7 +2,7 @@ package com.apimovil.models.dto;
 
 import java.time.LocalDate;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import com.apimovil.utiles.DoubleIntervalo;
 

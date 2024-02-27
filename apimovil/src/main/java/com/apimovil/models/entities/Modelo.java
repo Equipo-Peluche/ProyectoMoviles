@@ -1,7 +1,6 @@
 package com.apimovil.models.entities;
 
-
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
