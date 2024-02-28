@@ -20,7 +20,7 @@ public abstract class Anuncio {
 	@Field ("usuario")
 	
 	@NotNull(message = "El usuario no puede ser nulo")
-	private User user;
+	private UserEntity user;
 	
 	@NotNull(message = "El marca no puede ser nulo")
 	private String marca;
@@ -31,7 +31,7 @@ public abstract class Anuncio {
 	@NotNull(message = "El estado no puede ser nulo")
 	private int estado;
 
-	public Anuncio(User user, String marca, String modelo, int estado) {
+	public Anuncio(UserEntity user, String marca, String modelo, int estado) {
 		this.user = user;
 		this.marca = marca;
 		this.modelo = modelo;
