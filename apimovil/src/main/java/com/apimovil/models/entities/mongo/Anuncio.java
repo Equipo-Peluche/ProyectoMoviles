@@ -28,13 +28,14 @@ public abstract class Anuncio {
 	@NotNull(message = "El modelo no puede ser nulo")
 	private String modelo;
 
-	
-	public Anuncio(User user,String marca,String modelo) {
-		super();
+	@NotNull(message = "El estado no puede ser nulo")
+	private int estado;
+
+	public Anuncio(User user, String marca, String modelo, int estado) {
 		this.user = user;
 		this.marca = marca;
 		this.modelo = modelo;
+		this.estado = estado;
 	}
-	
 	
 }
