@@ -1,5 +1,7 @@
 package com.apimovil.models.entities.mongo;
 
+import java.time.LocalDate;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -17,4 +19,6 @@ public abstract class Peticion {
 	private ObjectId idPeticion;
 	@Field("usuario")
 	private User usuario;
+	private Boolean aceptada;
+	private LocalDate fecha;
 }
