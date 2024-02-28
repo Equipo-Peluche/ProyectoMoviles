@@ -21,6 +21,8 @@ public class RolePopulates {
 
 	public RolePopulates(RoleRepository roleRepository, UserService userService) {
 		super();
+		roleRepository.deleteAll();
+		userService.deleteAll();
 		this.roleRepository = roleRepository;
 		this.userService = userService;
 	}

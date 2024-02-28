@@ -62,4 +62,8 @@ public class UserService {
 //		userRepository.deleteByUsername(username);
 		return true;
 	}
+	public boolean deleteAll() {
+		userRepository.deleteAll();
+		return true;
+	}
 }
