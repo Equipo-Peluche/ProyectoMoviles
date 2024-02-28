@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+
 import com.apimovil.models.ERole;
 import com.apimovil.models.dto.UserCreateDTO;
 import com.apimovil.models.entities.mongo.RoleUser;
@@ -13,7 +15,7 @@ import com.apimovil.repositories.RoleRepository;
 import com.apimovil.repositories.UserRepository;
 
 import io.jsonwebtoken.lang.Arrays;
-
+@Service
 public class UserService {
 	private final UserRepository userRepository;
 	private final RoleRepository roleRepository;

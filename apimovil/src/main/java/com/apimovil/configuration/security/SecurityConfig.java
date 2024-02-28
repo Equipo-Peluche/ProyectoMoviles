@@ -49,7 +49,8 @@ public class SecurityConfig {
 				httpSecurity
 				.csrf((cs) -> cs.disable())
 				.authorizeHttpRequests((auth) -> {
-						auth.requestMatchers("users/hello").permitAll();
+						//Esto permite no tener seguridad en la ruta indicada
+						auth.requestMatchers("moviles").permitAll();
 //						auth.requestMatchers("users/helloSecured").hasAnyRole("ADMIN");
 						auth.anyRequest().authenticated();
 						})
