@@ -15,8 +15,8 @@ public class AnuncioVenta extends Anuncio{
 	@DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor que cero")
 	private double precio;
 
-	public AnuncioVenta( User user, String marca, String modelo, double precio) {
-		super(user, marca, modelo);
+	public AnuncioVenta( User user, String marca, String modelo, int estado, double precio) {
+		super(user, marca, modelo, estado);
 		this.precio = precio;
 	}
 

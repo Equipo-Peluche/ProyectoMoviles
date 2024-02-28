@@ -35,9 +35,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes precios
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 750.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
+        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 1, 750.0);
+        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 2, 750.0);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);
@@ -60,9 +60,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes marcas
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 1000.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
+        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 1, 750.0);
+        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 2, 1000.0);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);
@@ -85,9 +85,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes modelos
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 750.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
+        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 0, 750.0);
+        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 0, 1000.0);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);
@@ -100,8 +100,35 @@ class AnuncioVentaRepositoryTest {
         assertEquals(1, resultados.size());
         assertEquals("Modelo3", resultados.get(0).getModelo());
     }
+
+    @Test
+    void findByEstado() {
+        // Crear usuarios para los anuncios
+        User user1 = new User();
+        user1.setUsername("usuario1");
+        User user2 = new User();
+        user2.setUsername("usuario2");
+
+        // Crear anuncios de venta con diferentes estados
+        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
+        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 1, 750.0);
+        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 2, 1000.0);
+        
+        anuncioVentaRepository.save(anuncio1);
+        anuncioVentaRepository.save(anuncio2);
+        anuncioVentaRepository.save(anuncio3);
+
+        // Buscar anuncios por estado
+        List<AnuncioVenta> resultados = anuncioVentaRepository.findByEstado(2).get();
+
+        // Verificar que se encuentren los anuncios esperados
+        assertEquals(1, resultados.size());
+        assertEquals(2, resultados.get(0).getEstado());
+    }
     @AfterEach
     void afterEach() {
         anuncioVentaRepository.deleteAll();
     }
+    
+    
 }
