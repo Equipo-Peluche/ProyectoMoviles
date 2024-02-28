@@ -20,7 +20,10 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 @Slf4j
 public class JwtUtils {
-//	/	EncryptedKeyGenerator en web 256 en hex https://asecuritysite.com/encryption/plain
+	/**
+	 * EncryptedKeyGenerator HEX 256
+	 * <a> https://asecuritysite.com/encryption/plain </a>
+	 */
 	@Value("${jwt.secret.key}")
 	private String secretKey;
 
@@ -29,10 +32,15 @@ public class JwtUtils {
 
 	public String generateAccessToken(String username) {
 		String compact = Jwts.builder()
-				// la parte publica
+				/**
+				 * Public part
+				 */
 				.issuedAt(Date.valueOf(LocalDate.now().plus(1, ChronoUnit.DAYS)))
 				.subject(username)
-				// la parte secreta
+				
+				/**
+				 * Private part
+				 */
 				.signWith(getSignatureKey())
 				.compact();
 		log.debug("JwtUtils: creandotoken " + compact);
@@ -40,32 +48,44 @@ public class JwtUtils {
 
 	}
 
+	/**
+	 * Returns wether the token is valid or not
+	 * 
+	 * @param	token		Token sent
+	 * 
+	 * @return	boolean		Returns true if token is valid
+	 */
 	public Boolean isTokenValid(String token) {
 		try {
 			getAllClaims(token);
 			return true;
 		} catch (Exception e) {
-			log.error("JWTUtils:token invalido " + e.getMessage());
+			log.error("JWTUtils: Invalid Token. [JwtUtils:64] " + e.getMessage());
 			return false;
 		}
 	}
 
+	/**
+	 * Returns username based on token
+	 * 
+	 * @param	token		Token sent
+	 * 
+	 * @return	String		Returns username of the user owning the token
+	 */
 	public String getUSerNameFromToken(String token) {
 		return getClaim(token, Claims::getSubject);
 	}
 
+	/**
+	 * Generates keys using HMAC-SHA with a secret key. The secret key decodes from 
+	 * Base64 using "Decoders.BASE64.decode(secretKey)" that expects @param "secretKey"
+	 * base64 encoded secret key.
+	 * 
+	 * This method generates a key to sign using HMAC-SHA with a secret key base64 based
+	 * 
+	 * @return	SecretKey		Returns secret key encoded
+	 */
 	private SecretKey getSignatureKey() {
-		/*
-		 * Aquí se está utilizando la clase Keys del paquete javax.crypto.spec para
-		 * generar una clave HMAC-SHA utilizando la secretKey. La secretKey se
-		 * decodifica de Base64 usando Decoders.BASE64.decode(secretKey), que se espera
-		 * que sea una cadena codificada en Base64 que representa la clave secreta.
-		 * 
-		 * En resumen, este método getSignatureKey() genera una clave para firmar
-		 * utilizando HMAC-SHA a partir de una clave secreta codificada en Base64
-		 * llamada secretKey. //aqui vamos a crear la firma sha de la secretKey observa
-		 * como se decodifica la secretkey
-		 */
 		return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secretKey));
 	}
 

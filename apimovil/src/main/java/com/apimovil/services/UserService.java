@@ -29,7 +29,7 @@ public class UserService {
 		this.userCreateDTO2UserMapper = userCreateDTO2UserMapper;
 	}
 
-	// igual es momento de usar Response
+
 	public boolean createUser(UserCreateDTO userCreateDTO) {
 		UserEntity user = userCreateDTO2UserMapper.map(userCreateDTO);
 		if (userCreateDTO.roles() != null) {
@@ -59,7 +59,6 @@ public class UserService {
 	public boolean delete(String username) {
 		Optional<UserEntity> byUsername = userRepository.findByUsername(username);
 		userRepository.delete(byUsername.get());
-//		userRepository.deleteByUsername(username);
 		return true;
 	}
 	public boolean deleteAll() {

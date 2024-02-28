@@ -1,5 +1,6 @@
 package com.apimovil.security.filters;
 
+import java.io.IOException;
 import java.util.Optional;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -12,7 +13,6 @@ import com.apimovil.security.JwtUtils;
 import com.apimovil.services.UserDetailsServiceImpl;
 import com.mongodb.lang.NonNull;
 
-import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,19 +29,32 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		this.userDetailsServiceImpl = userDetailsServiceImpl;
 	}
 
+	
 	@Override
+	/**
+	 * This function do the filtering 
+	 * 
+	 * @param  HttpServletRequest   Extends the ServletRequest interface to provide 
+	 * 								request information for HTTP servlets
+	 * @param  HttpServletResponse  methods to access HTTP headers and cookies
+	 * @param  FilterChain   		Filtering request of a resource
+	 * 
+	 * 
+	 * @exception					ServletException
+	 * @exception					IOException
+	 */
 	protected void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
-			@NonNull FilterChain filterChain) throws IOException, ServletException, java.io.IOException {
-		System.out.println("JwtAuthorizationFilter: entrando en el filtro");
+			@NonNull FilterChain filterChain) throws IOException, ServletException {
+		System.out.println("JwtAuthorizationFilter: initializing filter");
 		String header = request.getHeader("Authorization");
-		System.out.println("JwtAuthorizationFilter: el header " + header);
+		System.out.println("JwtAuthorizationFilter: Header data: " + header);
 		isValidBearerHeader(header).ifPresent((head) -> {
-			// si todo a bien, ya tengo el token
+			// If every token is valid, continue getting username authentication
 			if (jwtUtils.isTokenValid(head)) {
-				// si eltoken es bueno obtengo todos los datos del usuario
+				// Getting username data
 				String username = jwtUtils.getUSerNameFromToken(head);
 				UserDetails userByUsername = userDetailsServiceImpl.loadUserByUsername(username);
-				// aqui obtengo el token de autenticacion de la base de datos
+				// Getting user authentication token via username
 				UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, null,
 						userByUsername.getAuthorities());
 				SecurityContextHolder.getContext().setAuthentication(token);
@@ -49,10 +62,15 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 		});
 		filterChain.doFilter(request, response);
 	}
-
+	/**
+	 * Returns optionally if header is valid
+	 * 
+	 * When header is not null, and starts with "Bearer "
+	 * 
+	 * @return			Token
+	 */
 	private Optional<String> isValidBearerHeader(String header) {
 		String prefix = "Bearer ";
-		// si el header no es nuelo y comienza por "Bearer " entonces retorna el tokem
 		return header != null && header.startsWith(prefix) ? Optional.of(header.substring(prefix.length()))
 				: Optional.ofNullable(null);
 	}

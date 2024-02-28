@@ -38,25 +38,31 @@ public class SecurityConfig {
 	}
 
 	@Bean
+	/**
+	 * Returns a SecurityFilterChain to authenticate via JWT
+	 * 
+	 * @return     the SecurityFilterChain Interface implementation
+	 */
 	SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity, AuthenticationManager authenticationManager)
 			throws Exception {
-		// aqui vamos a poner la autenticacion de jwt
+		// The JWT authentication
 		JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(jwtUtils);
 		jwtAuthenticationFilter.setAuthenticationManager(authenticationManager);
 		jwtAuthenticationFilter.setFilterProcessesUrl("/login");
-		// aqui el resto de la autenticacion
+		// HTTP authentication
 		DefaultSecurityFilterChain httpsec = 
 				httpSecurity
 				.csrf((cs) -> cs.disable())
 				.authorizeHttpRequests((auth) -> {
-						//Esto permite no tener seguridad en la ruta indicada
+						// Matches request of the routes that will not have authentication
 						auth.requestMatchers("moviles").permitAll();
-//						auth.requestMatchers("users/helloSecured").hasAnyRole("ADMIN");
+						// Any other request, requires authentication
 						auth.anyRequest().authenticated();
 						})
 				.sessionManagement((sess) -> {
 						sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 						})
+				// Adding custom JWT filters
 				.addFilter(jwtAuthenticationFilter)
 				.addFilterBefore(jwtAuthorizationFilter, UsernamePasswordAuthenticationFilter.class)
 				.build();
@@ -64,20 +70,25 @@ public class SecurityConfig {
 		return httpsec;
 	}
 
-	/*
-	 * Este es el codificador que vamos a usar
-	 */
 	@Bean
+	/**
+	 * Returns a new password encoder Object
+	 * @return     the BCrypt password encoder
+	 */
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	/*
-	 * Cuando un usuario intente autenticarse en el sistema, nos dara sus
-	 * credenciales (username/password) y este manager usara el USerDetailsManager
-	 * para saber si hay un usuario con esas credenciales en el sistema
-	 */
+	
 	@Bean
+	/**
+	 * @param username Username given by the user
+	 * @param password Password given in the body
+	 * 
+	 * 	When user authenticates via username and password this manager will use
+	 *  "USerDetailsManager" to know if there is any user with these credentials
+	 * 
+	 */
 	AuthenticationManager authenticationManager(HttpSecurity httpSecurity, PasswordEncoder passwordEncoder)
 			throws Exception {
 		AuthenticationManager authenticationManager = httpSecurity.getSharedObject(AuthenticationManagerBuilder.class)
