@@ -16,7 +16,7 @@ import lombok.Data;
 public class MovilDTO {
 	@NotNull(message = "El procesador no puede ser nulo")
 	private String procesador;
-	@NotNull(message = "El modelo no puede ser nulo")
+	@NotNull(message = "El marca no puede ser nulo")
 	private String marca;
 	@NotNull(message = "El modelo no puede ser nulo")
 	private String modelo;

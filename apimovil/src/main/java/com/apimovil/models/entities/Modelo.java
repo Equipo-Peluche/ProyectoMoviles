@@ -25,7 +25,7 @@ public class Modelo {
 	private String nombre;
 	@ManyToOne()
 	@JoinColumn(name = "marca_id")
-    @NotNull(message = "El nombre de modelo no puede ser nulo")
+    @NotNull(message = "El nombre de la marca no puede ser nulo")
 	private Marca marca;
 	
 	public Modelo(String nombre,Marca marca) {
