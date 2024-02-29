@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public abstract class Peticion {
 	@Id
 	@Field("_id")
@@ -21,4 +20,12 @@ public abstract class Peticion {
 	private User usuario;
 	private Boolean aceptada;
 	private LocalDate fecha;
+
+	public Peticion(User usuario, Boolean aceptada, LocalDate fecha) {
+		super();
+		this.usuario = usuario;
+		this.aceptada = aceptada;
+		this.fecha = fecha;
+	}
+
 }
