@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public abstract class Peticion {
+
+public abstract class Peticion<T extends Anuncio> {
+
 	@Id
 	@Field("_id")
 	private ObjectId idPeticion;
@@ -20,12 +22,14 @@ public abstract class Peticion {
 	private UserEntity usuario;
 	private Boolean aceptada;
 	private LocalDate fecha;
+	private T anuncio;
 
-	public Peticion(User usuario, Boolean aceptada, LocalDate fecha) {
+	public Peticion(UserEntity usuario, Boolean aceptada, LocalDate fecha, T anuncio) {
 		super();
 		this.usuario = usuario;
 		this.aceptada = aceptada;
 		this.fecha = fecha;
+		this.anuncio = anuncio;
 	}
 
 }
