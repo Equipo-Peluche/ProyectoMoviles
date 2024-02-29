@@ -31,5 +31,9 @@ public abstract class Peticion<T extends Anuncio> {
 		this.fecha = fecha;
 		this.anuncio = anuncio;
 	}
+	
+	public String getUsername() {
+		return this.usuario.getUsername();
+	}
 
 }

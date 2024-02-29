@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.apimovil.models.dto.mongo.AnuncioRequestDTO;
 import com.apimovil.models.dto.mongo.PeticionIntercambioRequestDTO;
-import com.apimovil.models.dto.mongo.PeticionResponseDTO;
+import com.apimovil.models.dto.mongo.PeticionDTO;
 import com.apimovil.models.dto.mongo.PeticionVentaRequestDTO;
 import com.apimovil.models.entities.mongo.PeticionIntercambio;
 import com.apimovil.models.entities.mongo.PeticionVenta;
@@ -31,13 +31,13 @@ public class PeticionService implements IPeticionService {
 	}
 
 	@Override
-	public List<PeticionResponseDTO> getAllPeticionesByAnuncio(AnuncioRequestDTO anuncio) {
+	public List<PeticionDTO> getAllPeticionesByAnuncio(AnuncioRequestDTO anuncio) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<PeticionResponseDTO> getAll() {
+	public List<PeticionDTO> getAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -49,7 +49,7 @@ public class PeticionService implements IPeticionService {
 	}
 
 	@Override
-	public List<PeticionResponseDTO> getAllPeticionesByFilterPeticion(IPeticionFilter filter) {
+	public List<PeticionDTO> getAllPeticionesByFilterPeticion(IPeticionFilter filter) {
 		// TODO Auto-generated method stub
 		return null;
 	}

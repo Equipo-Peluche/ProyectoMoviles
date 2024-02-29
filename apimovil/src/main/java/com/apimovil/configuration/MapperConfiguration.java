@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import com.apimovil.models.mappers.AnuncioIntercambioDTOMapper;
 import com.apimovil.models.mappers.AnuncioVentaDTOMapper;
 import com.apimovil.models.mappers.MovilDTOMapper;
+import com.apimovil.models.mappers.PeticionIntercambioDTOMapper;
+import com.apimovil.models.mappers.PeticionVentaDTOMapper;
 import com.apimovil.models.mappers.ResumenDTOMapper;
 import com.apimovil.models.mappers.UserCreateDTO2UserMapper;
 
@@ -33,6 +35,16 @@ public class MapperConfiguration {
 	@Bean
 	AnuncioVentaDTOMapper getAnuncioVentaDTOMapper() {
 		return new AnuncioVentaDTOMapper();
+	}
+	
+	@Bean
+	PeticionVentaDTOMapper getPeticionVentaDTOMapper() {
+		return new PeticionVentaDTOMapper();
+	}
+	
+	@Bean
+	PeticionIntercambioDTOMapper getPeticionIntercambioDTOMapper() {
+		return new PeticionIntercambioDTOMapper();
 	}
 	
 }
