@@ -19,6 +19,10 @@ public class AnuncioVenta extends Anuncio{
 		super(user, marca, modelo, estado);
 		this.precio = precio;
 	}
+	
+	public String getUsername() {
+		return this.getUser().getUsername();
+	}
 
 
 }

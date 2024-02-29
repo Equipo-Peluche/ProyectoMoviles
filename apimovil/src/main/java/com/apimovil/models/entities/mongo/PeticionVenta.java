@@ -21,5 +21,5 @@ public class PeticionVenta extends Peticion<AnuncioVenta>{
 		super(usuario, aceptada, fecha, anuncio);
 		this.precio = precio;
 	}
-	
+
 }
