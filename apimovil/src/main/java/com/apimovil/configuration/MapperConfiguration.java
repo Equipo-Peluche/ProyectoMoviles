@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.apimovil.models.mappers.MovilDTOMapper;
 import com.apimovil.models.mappers.ResumenDTOMapper;
+import com.apimovil.models.mappers.UserCreateDTO2UserMapper;
 
 @Configuration
 public class MapperConfiguration {
@@ -15,6 +16,11 @@ public class MapperConfiguration {
 	@Bean
 	ResumenDTOMapper getResumenDTOMapper() {
 		return new ResumenDTOMapper();
+	}
+	
+	@Bean
+	UserCreateDTO2UserMapper getUserCreateDTO2UserMapper() {
+		return new UserCreateDTO2UserMapper();
 	}
 	
 }

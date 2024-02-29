@@ -8,15 +8,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Document
-
-
 public class AnuncioIntercambio extends Anuncio{
 	
 	private int estadoMinimo;
-	
-	
-	
-	
-	
 
 }

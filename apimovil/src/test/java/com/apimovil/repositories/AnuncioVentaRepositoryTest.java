@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.apimovil.models.entities.mongo.AnuncioVenta;
-import com.apimovil.models.entities.mongo.User;
+import com.apimovil.models.entities.mongo.UserEntity;
 import com.apimovil.repositories.AnuncioVentaRepository;
 
 @SpringBootTest
@@ -29,9 +29,9 @@ class AnuncioVentaRepositoryTest {
     @Test
     void testFindByPrecio() {
         // Crear usuarios para los anuncios
-        User user1 = new User();
+        UserEntity user1 = new UserEntity();
         user1.setUsername("usuario1");
-        User user2 = new User();
+        UserEntity user2 = new UserEntity();
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes precios
@@ -54,9 +54,9 @@ class AnuncioVentaRepositoryTest {
     @Test
     void findByMarca() {
         // Crear usuarios para los anuncios
-        User user1 = new User();
+        UserEntity user1 = new UserEntity();
         user1.setUsername("usuario1");
-        User user2 = new User();
+        UserEntity user2 = new UserEntity();
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes marcas
@@ -79,9 +79,9 @@ class AnuncioVentaRepositoryTest {
     @Test
     void findByModelo() {
         // Crear usuarios para los anuncios
-        User user1 = new User();
+        UserEntity user1 = new UserEntity();
         user1.setUsername("usuario1");
-        User user2 = new User();
+        UserEntity user2 = new UserEntity();
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes modelos
@@ -104,9 +104,9 @@ class AnuncioVentaRepositoryTest {
     @Test
     void findByEstado() {
         // Crear usuarios para los anuncios
-        User user1 = new User();
+        UserEntity user1 = new UserEntity();
         user1.setUsername("usuario1");
-        User user2 = new User();
+        UserEntity user2 = new UserEntity();
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes estados

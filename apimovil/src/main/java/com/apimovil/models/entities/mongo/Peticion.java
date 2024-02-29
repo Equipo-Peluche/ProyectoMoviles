@@ -17,7 +17,7 @@ public abstract class Peticion<T extends Anuncio> {
 	@Field("_id")
 	private ObjectId idPeticion;
 	@Field("usuario")
-	private User usuario;
+	private UserEntity usuario;
 	private Boolean aceptada;
 	private LocalDate fecha;
 	private T anuncio;

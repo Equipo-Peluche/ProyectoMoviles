@@ -4,11 +4,11 @@ import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.apimovil.models.entities.mongo.User;
+import com.apimovil.models.entities.mongo.UserEntity;
 
 
-public interface UserRepository extends MongoRepository<User, String> {
-	Optional<User> findByUsername(String username);
+public interface UserRepository extends MongoRepository<UserEntity, String> {
+	Optional<UserEntity> findByUsername(String username);
 
 	void deleteByUsername(String username);
 //	ByUsername(String username);

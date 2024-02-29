@@ -15,9 +15,9 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @Entity
+@Data
 public class TamanioPantalla {
 
 	@Id
