@@ -1,17 +1,46 @@
 package com.apimovil.services;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.apimovil.models.dto.AnuncioResponseDTO;
+import com.apimovil.models.mappers.AnuncioIntercambioDTOMapper;
+import com.apimovil.models.mappers.AnuncioVentaDTOMapper;
+import com.apimovil.repositories.AnuncioVentaRepository;
+import com.apimovil.repositories.mongo.AnuncioIntercambioRepository;
 
 public class AnuncioService implements IAnuncioService{
 
+	@Autowired
+	AnuncioVentaRepository anuncioVentaRepository;
+	@Autowired
+	AnuncioIntercambioRepository anuncioIntercambioRepository;
+	
+	
+	@Autowired
+	AnuncioIntercambioDTOMapper anuncioIntercambioDTOMapper;
+	@Autowired
+	AnuncioVentaDTOMapper anuncioVentaDTOMapper;
+	
 	@Override
 	public List<AnuncioResponseDTO> getAllAnuncios() {
-		// TODO Auto-generated method stub
-		return null;
+		List<AnuncioResponseDTO> result = new ArrayList<>();
+		
+		result.addAll(anuncioVentaRepository.findAll()
+				.stream().map(a -> anuncioVentaDTOMapper.map(a))
+				.collect(Collectors.toList())
+				);
+		
+		result.addAll(anuncioIntercambioRepository.findAll()
+				.stream().map(a -> anuncioIntercambioDTOMapper.map(a))
+				.collect(Collectors.toList())
+				);
+		
+		return result;
 	}
 
 	@Override

@@ -24,4 +24,8 @@ public class AnuncioIntercambio extends Anuncio {
 		this.estadoMinimo = estadoMinimo;
 	}
 
+	public String getUsername() {
+		return this.getUser().getUsername();
+	}
+	
 }
