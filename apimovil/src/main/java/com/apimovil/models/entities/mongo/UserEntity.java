@@ -24,7 +24,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Document(collection = "users")
-public class User {
+public class UserEntity {
 	@Id
 	private String id;
 	@Email(message = "no cumple el formato")
@@ -42,7 +42,7 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
 	private Set<RoleUser> roles;
 	
-	public User(String email, String username, String password) {
+	public UserEntity(String email, String username, String password) {
 		super();
 		this.email = email;
 		this.username = username;

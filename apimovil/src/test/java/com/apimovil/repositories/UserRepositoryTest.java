@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.apimovil.models.ERole;
 import com.apimovil.models.entities.mongo.RoleUser;
-import com.apimovil.models.entities.mongo.User;
+import com.apimovil.models.entities.mongo.UserEntity;
 
 @SpringBootTest
 class UserRepositoryTest {
@@ -24,8 +24,8 @@ class UserRepositoryTest {
 		mongoTemplate.getCollection("roles").drop();
 		mongoTemplate.getCollection("users").drop();
 		roleRepository.save(new RoleUser(ERole.ADMIN));
-		userRepository.save(new User("Felix@gmail.com","Felix","1234"));
-		userRepository.save(new User("Jose@gmail.com","Jose","4321"));
+		userRepository.save(new UserEntity("Felix@gmail.com","Felix","1234"));
+		userRepository.save(new UserEntity("Jose@gmail.com","Jose","4321"));
 	}
 
 }

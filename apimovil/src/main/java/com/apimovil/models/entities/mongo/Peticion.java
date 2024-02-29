@@ -17,7 +17,7 @@ public abstract class Peticion {
 	@Field("_id")
 	private ObjectId idPeticion;
 	@Field("usuario")
-	private User usuario;
+	private UserEntity usuario;
 	private Boolean aceptada;
 	private LocalDate fecha;
 

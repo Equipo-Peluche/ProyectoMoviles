@@ -1,5 +1,11 @@
 package com.apimovil.models.entities.mongo;
 
-public class AnuncioIntercambio {
+
+@Data
+@Document
+public class AnuncioIntercambio extends Anuncio{
+	
+	private int estadoMinimo;
+
 
 }
