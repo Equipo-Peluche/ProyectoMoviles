@@ -22,7 +22,7 @@ public abstract class Peticion<T extends Anuncio> {
 	private LocalDate fecha;
 	private T anuncio;
 	
-	public Peticion(User usuario, Boolean aceptada, LocalDate fecha, T anuncio) {
+	public Peticion(UserEntity usuario, Boolean aceptada, LocalDate fecha, T anuncio) {
 		super();
 		this.usuario = usuario;
 		this.aceptada = aceptada;

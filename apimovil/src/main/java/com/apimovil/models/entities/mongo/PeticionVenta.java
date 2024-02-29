@@ -17,7 +17,7 @@ public class PeticionVenta extends Peticion<AnuncioVenta>{
 	@DecimalMin(value = "0.0", inclusive = false, message = "El precio debe ser mayor que cero")
 	private Double precio;
 
-	public PeticionVenta(User usuario, Boolean aceptada, LocalDate fecha, AnuncioVenta anuncio, Double precio) {
+	public PeticionVenta(UserEntity usuario, Boolean aceptada, LocalDate fecha, AnuncioVenta anuncio, Double precio) {
 		super(usuario, aceptada, fecha, anuncio);
 		this.precio = precio;
 	}

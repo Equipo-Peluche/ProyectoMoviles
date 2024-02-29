@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.apimovil.models.entities.mongo.AnuncioVenta;
 import com.apimovil.models.entities.mongo.PeticionVenta;
-import com.apimovil.models.entities.mongo.User;
+import com.apimovil.models.entities.mongo.UserEntity;
 import com.apimovil.repositories.mongo.PeticionVentaRepository;
 
 @SpringBootTest
@@ -31,7 +30,7 @@ class PeticionVentaRepositoryTest {
 	@BeforeEach
 	void test() {
 		mongoTemplate.getCollection("PeticionVenta").drop();
-		User usuario = new User("manu@gmail.com","manu","1234");
+		UserEntity usuario = new UserEntity("manu@gmail.com","manu","1234");
 		AnuncioVenta anuncioVenta = new AnuncioVenta(usuario, "marca", "modelo", 1, 1.0);
 		AnuncioVenta anuncioVenta2 = new AnuncioVenta(usuario, "marca", "modelo", 2, 1.0);
 		peticionVentaRepository.save(new PeticionVenta(usuario, false, LocalDate.of(2022, 2, 2), anuncioVenta, 1.0));
