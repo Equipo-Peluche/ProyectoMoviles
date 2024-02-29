@@ -1,5 +1,8 @@
 package com.apimovil.models.dto;
 
+import lombok.Data;
+
+@Data
 public class AnuncioVentaDTO extends AnuncioResponseDTO {
 	
 	private Double precio;
