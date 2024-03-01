@@ -40,6 +40,7 @@ public abstract class Anuncio {
 		this.marca = marca;
 		this.modelo = modelo;
 		this.estado = estado;
+		this.referencia=referencia;
 		this.isCerrado=isCerrado;
 	}
 	

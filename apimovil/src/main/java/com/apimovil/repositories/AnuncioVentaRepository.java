@@ -2,6 +2,7 @@ package com.apimovil.repositories;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
 
 import com.apimovil.models.entities.mongo.AnuncioVenta;
 
@@ -13,5 +14,5 @@ public interface AnuncioVentaRepository extends MongoRepository<AnuncioVenta, Ob
 	public Optional<List<AnuncioVenta>> findByMarca(String marca);
 	public Optional<List<AnuncioVenta>> findByModelo(String modelo);
 	public Optional<List<AnuncioVenta>> findByEstado(int estado);
-
+	Optional<AnuncioVenta> findFirstByOrderByReferenciaDesc();
 }
