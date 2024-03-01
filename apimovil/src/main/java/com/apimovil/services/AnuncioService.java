@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.apimovil.models.dto.AnuncioIntercambioDTO;
 import com.apimovil.models.dto.AnuncioResponseDTO;
@@ -19,7 +20,7 @@ import com.apimovil.models.mappers.AnuncioVentaDTOMapper;
 import com.apimovil.repositories.AnuncioVentaRepository;
 import com.apimovil.repositories.UserRepository;
 import com.apimovil.repositories.mongo.AnuncioIntercambioRepository;
-
+@Service
 public class AnuncioService implements IAnuncioService{
 
 	@Autowired
