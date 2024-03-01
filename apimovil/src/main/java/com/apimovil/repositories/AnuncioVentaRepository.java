@@ -13,5 +13,6 @@ public interface AnuncioVentaRepository extends MongoRepository<AnuncioVenta, Ob
 	public Optional<List<AnuncioVenta>> findByMarca(String marca);
 	public Optional<List<AnuncioVenta>> findByModelo(String modelo);
 	public Optional<List<AnuncioVenta>> findByEstado(int estado);
+	public Optional<AnuncioVenta> findByReferencia(Integer referencia);
 
 }

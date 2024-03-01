@@ -13,7 +13,7 @@ public interface IAnuncioService {
 	public List<AnuncioResponseDTO> getAllAnuncios();
 	public List<AnuncioIntercambioDTO> getAnunciosIntercambio();
 	public List<AnuncioVentaDTO> getAnunciosVenta();
-	public AnuncioResponseDTO getAnuncioByID(String id);
+	public AnuncioResponseDTO getAnuncioByReferencia(Integer referencia);
 	
 	public boolean createAnuncioVenta(AnuncioVentaDTO anuncio);
 	public boolean createAnuncioIntercambio(AnuncioIntercambioDTO anuncio);

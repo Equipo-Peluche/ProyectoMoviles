@@ -20,8 +20,9 @@ import com.apimovil.models.mappers.AnuncioVentaDTOMapper;
 import com.apimovil.repositories.AnuncioVentaRepository;
 import com.apimovil.repositories.UserRepository;
 import com.apimovil.repositories.mongo.AnuncioIntercambioRepository;
+
 @Service
-public class AnuncioService implements IAnuncioService{
+public class AnuncioService implements IAnuncioService {
 
 	@Autowired
 	AnuncioVentaRepository anuncioVentaRepository;
@@ -29,75 +30,53 @@ public class AnuncioService implements IAnuncioService{
 	AnuncioIntercambioRepository anuncioIntercambioRepository;
 	@Autowired
 	UserRepository userRepository;
-	
-	
+
 	@Autowired
 	AnuncioIntercambioDTOMapper anuncioIntercambioDTOMapper;
 	@Autowired
 	AnuncioVentaDTOMapper anuncioVentaDTOMapper;
-	
+
 	@Override
 	public List<AnuncioResponseDTO> getAllAnuncios() {
 		List<AnuncioResponseDTO> result = new ArrayList<>();
-		
+
 		result.addAll(getAnunciosIntercambio());
 		result.addAll(getAnunciosVenta());
-		
-		return result;
-	}
 
-	@Override
-	public AnuncioResponseDTO getAnuncioByID(String id) {
-		Optional<AnuncioVenta> res1 = anuncioVentaRepository.findById(new ObjectId(id));
-		Optional<AnuncioIntercambio> res2 = anuncioIntercambioRepository.findById(new ObjectId(id));
-		
-		if(res1.isPresent()) return anuncioVentaDTOMapper.map(res1.get());
-		if(res2.isPresent()) return anuncioIntercambioDTOMapper.map(res2.get());
-		
-		return null;
+		return result;
 	}
 
 	@Override
 	public boolean createAnuncioVenta(AnuncioVentaDTO anuncio) {
 		Optional<UserEntity> user = userRepository.findByUsername(anuncio.getUsername());
-		
-		if(!user.isPresent()) return false;
-		//TODO obtener el último id
-				Integer last_id=null;
-		
-		AnuncioVenta newAnuncio = new AnuncioVenta(
-				last_id+1,
-				user.get(),
-				anuncio.getMarca(),
-				anuncio.getModelo(),
-				anuncio.getEstado(),
-				anuncio.getPrecio(),
-				false);
-		
+
+		if (!user.isPresent())
+			return false;
+		// TODO obtener el último id
+		Integer last_id = null;
+
+		AnuncioVenta newAnuncio = new AnuncioVenta(last_id + 1, user.get(), anuncio.getMarca(), anuncio.getModelo(),
+				anuncio.getEstado(), anuncio.getPrecio(), false);
+
 		anuncioVentaRepository.save(newAnuncio);
-		
+
 		return true;
 	}
 
 	@Override
 	public boolean createAnuncioIntercambio(AnuncioIntercambioDTO anuncio) {
 		Optional<UserEntity> user = userRepository.findByUsername(anuncio.getUsername());
-		
-		if(!user.isPresent()) return false;
-		//TODO obtener el último id
-		Integer last_id=null;
-		
-		AnuncioIntercambio newAnuncio = new AnuncioIntercambio(
-				last_id+1,
-				user.get(),
-				anuncio.getMarca(),
-				anuncio.getModelo(),
-				anuncio.getEstado(),
-				anuncio.getEstadoMinimo(),
-				false);
-		
+
+		if (!user.isPresent())
+			return false;
+		// TODO obtener el último id
+		Integer last_id = null;
+
+		AnuncioIntercambio newAnuncio = new AnuncioIntercambio(last_id + 1, user.get(), anuncio.getMarca(),
+				anuncio.getModelo(), anuncio.getEstado(), anuncio.getEstadoMinimo(), false);
+
 		anuncioIntercambioRepository.save(newAnuncio);
-		
+
 		return true;
 	}
 
@@ -105,16 +84,16 @@ public class AnuncioService implements IAnuncioService{
 	public boolean removeAnuncio(String id) {
 		Optional<AnuncioVenta> res1 = anuncioVentaRepository.findById(new ObjectId(id));
 		Optional<AnuncioIntercambio> res2 = anuncioIntercambioRepository.findById(new ObjectId(id));
-		
-		if(res1.isPresent()) {
+
+		if (res1.isPresent()) {
 			anuncioVentaRepository.delete(res1.get());
 			return true;
 		}
-		if(res2.isPresent()) {
+		if (res2.isPresent()) {
 			anuncioIntercambioRepository.delete(res2.get());
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -124,30 +103,35 @@ public class AnuncioService implements IAnuncioService{
 		return false;
 	}
 
-
 	@Override
 	public List<AnuncioIntercambioDTO> getAnunciosIntercambio() {
 		List<AnuncioIntercambioDTO> result = new ArrayList<>();
-		
-		result.addAll(anuncioIntercambioRepository.findAll()
-				.stream().map(a -> anuncioIntercambioDTOMapper.map(a))
-				.collect(Collectors.toList())
-				);
+
+		result.addAll(anuncioIntercambioRepository.findAll().stream().map(a -> anuncioIntercambioDTOMapper.map(a))
+				.collect(Collectors.toList()));
 		return result;
 	}
-
 
 	@Override
 	public List<AnuncioVentaDTO> getAnunciosVenta() {
 		List<AnuncioVentaDTO> result = new ArrayList<>();
-		
-		result.addAll(anuncioVentaRepository.findAll()
-				.stream().map(a -> anuncioVentaDTOMapper.map(a))
-				.collect(Collectors.toList())
-				);
+
+		result.addAll(anuncioVentaRepository.findAll().stream().map(a -> anuncioVentaDTOMapper.map(a))
+				.collect(Collectors.toList()));
 		return result;
 	}
 
-	
+	@Override
+	public AnuncioResponseDTO getAnuncioByReferencia(Integer referencia) {
+		Optional<AnuncioVenta> res1 = anuncioVentaRepository.findByReferencia(referencia);
+		Optional<AnuncioIntercambio> res2 = anuncioIntercambioRepository.findByReferencia(referencia);
+
+		if (res1.isPresent())
+			return anuncioVentaDTOMapper.map(res1.get());
+		if (res2.isPresent())
+			return anuncioIntercambioDTOMapper.map(res2.get());
+
+		return null;
+	}
 
 }
