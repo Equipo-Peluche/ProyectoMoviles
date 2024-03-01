@@ -32,13 +32,13 @@ class PeticionIntercambioRepositoryTest {
 	void test() {
 		mongoTemplate.getCollection("PeticionIntercambio").drop();
 		UserEntity user = new UserEntity("jesus@gmail.com", "jesus", "1234");
-		AnuncioIntercambio intercambioEntrada1 = new AnuncioIntercambio(user, "marca1", "modelo1", 2, 2);
-		AnuncioIntercambio intercambioEntrada2 = new AnuncioIntercambio(user, "marca1", "modelo1", 1, 4);
-		AnuncioIntercambio intercambioSalida2 = new AnuncioIntercambio(user, "marca2", "modelo2", 3, 4);
+		AnuncioIntercambio intercambioEntrada1 = new AnuncioIntercambio(1,user, "marca1", "modelo1", 2, 2,false);
+		AnuncioIntercambio intercambioEntrada2 = new AnuncioIntercambio(2,user, "marca1", "modelo1", 1, 4,false);
+		AnuncioIntercambio intercambioSalida2 = new AnuncioIntercambio(3,user, "marca2", "modelo2", 3, 4,false);
 		peticionIntercambioRepository.save(
-				new PeticionIntercambio(user, true, LocalDate.of(2023, 2, 2), intercambioEntrada1, intercambioSalida2));
+				new PeticionIntercambio(1,user, true, LocalDate.of(2023, 2, 2), intercambioEntrada1, intercambioSalida2));
 		peticionIntercambioRepository.save(
-				new PeticionIntercambio(user, true, LocalDate.of(2024, 5, 5), intercambioEntrada2, intercambioSalida2));
+				new PeticionIntercambio(2,user, true, LocalDate.of(2024, 5, 5), intercambioEntrada2, intercambioSalida2));
 
 	}
 

@@ -39,8 +39,8 @@ class AnuncioIntercambioRepositoryTest {
 		UserEntity user2 = new UserEntity();
 		user2.setUsername("usuario2");
 
-		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(user1, xiaomi, "note", 0, 5);
-		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(user2, apple, "note", 0, 5);
+		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(1,user1, xiaomi, "note", 0, 5,false);
+		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(2,user2, apple, "note", 0, 5,false);
 
 		anuncioIntercambioRepository.findByMarca(samsung);
 		List<AnuncioIntercambio> anuncios = new ArrayList<>();
@@ -70,9 +70,9 @@ class AnuncioIntercambioRepositoryTest {
 		UserEntity user2 = new UserEntity();
 		user2.setUsername("usuario2");
 
-		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(user1, xiaomi, "note", 0, 5);
-		AnuncioIntercambio anuncioTres = new AnuncioIntercambio(user1, xiaomi, "note", 0, 5);
-		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(user2, apple, "note", 0, 5);
+		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(3,user1, xiaomi, "note", 0, 5,false);
+		AnuncioIntercambio anuncioTres = new AnuncioIntercambio(4,user1, xiaomi, "note", 0, 5,false);
+		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(5,user2, apple, "note", 0, 5,false);
 
 		List<AnuncioIntercambio> anuncios = new ArrayList<>();
 
@@ -100,8 +100,8 @@ class AnuncioIntercambioRepositoryTest {
 		UserEntity user2 = new UserEntity();
 		user2.setUsername("usuario2");
 
-		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(user1, xiaomi, "note", 0, 4);
-		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(user2, apple, "note", 0, 5);
+		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(6,user1, xiaomi, "note", 0, 4,false);
+		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(7,user2, apple, "note", 0, 5,false);
 
 		Optional<List<AnuncioIntercambio>> byEstadoMinimo = anuncioIntercambioRepository.findByEstadoMinimo(-3);
 		List<AnuncioIntercambio> anuncios = new ArrayList<>();
@@ -131,10 +131,10 @@ class AnuncioIntercambioRepositoryTest {
 		String modeloA20 = "A20";
 		String trece = "13";
 
-		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(user1, xiaomi, "note", 0, 4);
-		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(user2, apple, trece, 0, 5);
-		AnuncioIntercambio anuncioTres = new AnuncioIntercambio(user2, apple, trece, 0, 5);
-		AnuncioIntercambio anuncioCuatro = new AnuncioIntercambio(user2, apple, trece, 0, 5);
+		AnuncioIntercambio anuncioUno = new AnuncioIntercambio(8,user1, xiaomi, "note", 0, 4,false);
+		AnuncioIntercambio anuncioDos = new AnuncioIntercambio(9,user2, apple, trece, 0, 5,false);
+		AnuncioIntercambio anuncioTres = new AnuncioIntercambio(10,user2, apple, trece, 0, 5,false);
+		AnuncioIntercambio anuncioCuatro = new AnuncioIntercambio(11,user2, apple, trece, 0, 5,false);
 
 		List<AnuncioIntercambio> anuncios = new ArrayList<>();
 

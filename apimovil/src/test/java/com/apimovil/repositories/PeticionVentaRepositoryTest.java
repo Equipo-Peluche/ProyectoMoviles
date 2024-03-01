@@ -31,10 +31,10 @@ class PeticionVentaRepositoryTest {
 	void test() {
 		mongoTemplate.getCollection("PeticionVenta").drop();
 		UserEntity usuario = new UserEntity("manu@gmail.com","manu","1234");
-		AnuncioVenta anuncioVenta = new AnuncioVenta(usuario, "marca", "modelo", 1, 1.0);
-		AnuncioVenta anuncioVenta2 = new AnuncioVenta(usuario, "marca", "modelo", 2, 1.0);
-		peticionVentaRepository.save(new PeticionVenta(usuario, false, LocalDate.of(2022, 2, 2), anuncioVenta, 1.0));
-		peticionVentaRepository.save(new PeticionVenta(usuario, true, LocalDate.of(2021, 2, 2), anuncioVenta2, 100.0));
+		AnuncioVenta anuncioVenta = new AnuncioVenta(1,usuario, "marca", "modelo", 1, 1.0,false);
+		AnuncioVenta anuncioVenta2 = new AnuncioVenta(2,usuario, "marca", "modelo", 2, 1.0,false);
+		peticionVentaRepository.save(new PeticionVenta(3,usuario, false, LocalDate.of(2022, 2, 2), anuncioVenta, 1.0));
+		peticionVentaRepository.save(new PeticionVenta(4,usuario, true, LocalDate.of(2021, 2, 2), anuncioVenta2, 100.0));
 	}
 	
 	@Test

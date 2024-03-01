@@ -35,9 +35,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes precios
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 1, 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 2, 750.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(1,user1, "Marca1", "Modelo1", 0, 500.0,false);
+        AnuncioVenta anuncio2 = new AnuncioVenta(2,user2, "Marca2", "Modelo2", 1, 750.0,false);
+        AnuncioVenta anuncio3 = new AnuncioVenta(3,user1, "Marca3", "Modelo3", 2, 750.0,false);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);
@@ -60,9 +60,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes marcas
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 1, 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 2, 1000.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(4,user1, "Marca1", "Modelo1", 0, 500.0,false);
+        AnuncioVenta anuncio2 = new AnuncioVenta(5,user2, "Marca2", "Modelo2", 1, 750.0,false);
+        AnuncioVenta anuncio3 = new AnuncioVenta(6,user1, "Marca3", "Modelo3", 2, 1000.0,false);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);
@@ -85,9 +85,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes modelos
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 0, 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 0, 1000.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(7,user1, "Marca1", "Modelo1", 0, 500.0,false);
+        AnuncioVenta anuncio2 = new AnuncioVenta(8,user2, "Marca2", "Modelo2", 0, 750.0,false);
+        AnuncioVenta anuncio3 = new AnuncioVenta(9,user1, "Marca3", "Modelo3", 0, 1000.0,false);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);
@@ -110,9 +110,9 @@ class AnuncioVentaRepositoryTest {
         user2.setUsername("usuario2");
 
         // Crear anuncios de venta con diferentes estados
-        AnuncioVenta anuncio1 = new AnuncioVenta(user1, "Marca1", "Modelo1", 0, 500.0);
-        AnuncioVenta anuncio2 = new AnuncioVenta(user2, "Marca2", "Modelo2", 1, 750.0);
-        AnuncioVenta anuncio3 = new AnuncioVenta(user1, "Marca3", "Modelo3", 2, 1000.0);
+        AnuncioVenta anuncio1 = new AnuncioVenta(10,user1, "Marca1", "Modelo1", 0, 500.0,false);
+        AnuncioVenta anuncio2 = new AnuncioVenta(11,user2, "Marca2", "Modelo2", 1, 750.0,false);
+        AnuncioVenta anuncio3 = new AnuncioVenta(12,user1, "Marca3", "Modelo3", 2, 1000.0,false);
         
         anuncioVentaRepository.save(anuncio1);
         anuncioVentaRepository.save(anuncio2);

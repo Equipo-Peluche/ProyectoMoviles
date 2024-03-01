@@ -22,7 +22,7 @@ public class AnunciosController {
 	@Autowired
 	AnuncioService anuncioService;
 
-	@GetMapping("/crearanuncio")
+	@GetMapping("/crearanuncioventa")
 	public ResponseEntity<?> getCrearAnuncioVenta(@Valid @RequestBody AnuncioVentaDTO anuncio) {
 		Boolean response=anuncioService.createAnuncioVenta(anuncio);
 		if(response) {
@@ -31,7 +31,7 @@ public class AnunciosController {
 		return ResponseEntity.badRequest().build();
 	}
 	
-	@GetMapping("/crearanuncio")
+	@GetMapping("/crearanunciointercambio")
 	public ResponseEntity<?> getCrearAnuncioIntercambio(@Valid @RequestBody AnuncioIntercambioDTO anuncio) {
 		Boolean response=anuncioService.createAnuncioIntercambio(anuncio);
 		if(response) {

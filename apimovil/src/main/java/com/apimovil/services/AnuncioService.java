@@ -62,13 +62,17 @@ public class AnuncioService implements IAnuncioService{
 		Optional<UserEntity> user = userRepository.findByUsername(anuncio.getUsername());
 		
 		if(!user.isPresent()) return false;
+		//TODO obtener el último id
+				Integer last_id=null;
 		
 		AnuncioVenta newAnuncio = new AnuncioVenta(
+				last_id+1,
 				user.get(),
 				anuncio.getMarca(),
 				anuncio.getModelo(),
 				anuncio.getEstado(),
-				anuncio.getPrecio());
+				anuncio.getPrecio(),
+				false);
 		
 		anuncioVentaRepository.save(newAnuncio);
 		
@@ -80,13 +84,17 @@ public class AnuncioService implements IAnuncioService{
 		Optional<UserEntity> user = userRepository.findByUsername(anuncio.getUsername());
 		
 		if(!user.isPresent()) return false;
+		//TODO obtener el último id
+		Integer last_id=null;
 		
 		AnuncioIntercambio newAnuncio = new AnuncioIntercambio(
+				last_id+1,
 				user.get(),
 				anuncio.getMarca(),
 				anuncio.getModelo(),
 				anuncio.getEstado(),
-				anuncio.getEstadoMinimo());
+				anuncio.getEstadoMinimo(),
+				false);
 		
 		anuncioIntercambioRepository.save(newAnuncio);
 		

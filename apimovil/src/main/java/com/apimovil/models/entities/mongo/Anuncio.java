@@ -17,6 +17,9 @@ public abstract class Anuncio {
 	@Id
 	@Field("_id")
 	private ObjectId idAnuncio;
+	
+	private Integer referencia;
+	
 	@Field ("usuario")
 	
 	@NotNull(message = "El usuario no puede ser nulo")
@@ -31,11 +34,13 @@ public abstract class Anuncio {
 	@NotNull(message = "El estado no puede ser nulo")
 	private int estado;
 
-	public Anuncio(UserEntity user, String marca, String modelo, int estado) {
+	private Boolean isCerrado;
+	public Anuncio(Integer referencia,UserEntity user, String marca, String modelo, int estado,Boolean isCerrado) {
 		this.user = user;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.estado = estado;
+		this.isCerrado=isCerrado;
 	}
 	
 }

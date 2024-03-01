@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 public class PeticionIntercambio extends Peticion<AnuncioIntercambio> {
 	private AnuncioIntercambio anuncioIntercambioSalida;
 
-	public PeticionIntercambio(UserEntity usuario, Boolean aceptada, LocalDate fecha, AnuncioIntercambio anuncio,
+	public PeticionIntercambio(Integer referencia,UserEntity usuario, Boolean aceptada, LocalDate fecha, AnuncioIntercambio anuncio,
 			AnuncioIntercambio anuncioIntercambioSalida) {
-		super(usuario, aceptada, fecha, anuncio);
+		super(referencia,usuario, aceptada, fecha, anuncio);
 		this.anuncioIntercambioSalida = anuncioIntercambioSalida;
 	}
 
